@@ -1,23 +1,30 @@
-CC		:= c++
-
-NAME	:= megaphone
-
-CFLAGS	:= -Wall -Wextra -Werror -std=c++98
-
-SRC		:= megaphone.cpp
-
-OBJ		:= $(SRC:%.cpp=%.o)
+NAME	= megaphone
+CC		= c++
+CFLAGS	= -Wall -Wextra -Werror -std=c++98
+SRC		= megaphone.cpp
+OBJ		= $(SRC:%.cpp=%.o)
+RM 		= rm -f
+SILENT 	= @
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(CFLAGS) -o $(NAME)
+	$(SILENT)$(CC) $(OBJ) $(CFLAGS) -o $@
+	@echo "░█████╗░██████╗░██████╗░░█████╗░░█████╗░"
+	@echo "██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔══██╗"
+	@echo "██║░░╚═╝██████╔╝██████╔╝██║░░██║██║░░██║"
+	@echo "██║░░██╗██╔═══╝░██╔═══╝░██║░░██║██║░░██║"
+	@echo "╚█████╔╝██║░░░░░██║░░░░░╚█████╔╝╚█████╔╝"
+	@echo "░╚════╝░╚═╝░░░░░╚═╝░░░░░░╚════╝░░╚════╝░"
+
+%.o: %.cpp
+	$(SILENT)$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	$(SILENT)$(RM) $(OBJ)
 
 fclean:
-	rm -f $(OBJ) $(NAME)
+	$(SILENT)$(RM) $(OBJ) $(NAME)
 
 re: fclean all
 

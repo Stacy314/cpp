@@ -3,13 +3,15 @@
 
 #include <string>
 
+typedef std::string field_t;
+
 class Contact {
 private:
-    std::string firstName;
-    std::string lastName;
-    std::string nickname;
-    std::string phoneNumber;
-    std::string darkestSecret;
+    field_t firstName;
+    field_t lastName;
+    field_t nickname;
+    field_t phoneNumber;
+    field_t darkestSecret;
 
 public:
     Contact();
