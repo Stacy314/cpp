@@ -2,7 +2,9 @@
 #include <iostream>
 #include <iomanip>
 
-PhoneBook::PhoneBook() : totalContacts(0), oldestIndex(0) {}
+PhoneBook::PhoneBook() : _totalContacts(0), _oldestIndex(0) {}
+
+PhoneBook::~PhoneBook() {}
 
 void PhoneBook::addContact() {
     Contact newContact;
@@ -13,16 +15,16 @@ void PhoneBook::addContact() {
         return;
     }
 
-    contacts[oldestIndex] = newContact;
-    oldestIndex = (oldestIndex + 1) % 8;
-    if (totalContacts < 8)
-        totalContacts++;
+    _contacts[_oldestIndex] = newContact;
+    _oldestIndex = (_oldestIndex + 1) % 8;
+    if (_totalContacts < 8)
+        _totalContacts++;
 
     std::cout << "Contact added!" << std::endl;
 }
 
 void PhoneBook::searchContact() const {
-    if (totalContacts == 0) {
+    if (_totalContacts == 0) {
         std::cout << "PhoneBook is empty." << std::endl;
         return;
     }
@@ -32,8 +34,8 @@ void PhoneBook::searchContact() const {
               << std::setw(10) << "Last Name" << "|"
               << std::setw(10) << "Nickname" << std::endl;
 
-    for (int i = 0; i < totalContacts; ++i) {
-        contacts[i].displayShort(i);
+    for (int i = 0; i < _totalContacts; ++i) {
+        _contacts[i].displayShort(i);
     }
 
     std::cout << "Enter index: ";
@@ -46,10 +48,10 @@ void PhoneBook::searchContact() const {
     }
 
     int index = input[0] - '0';
-    if (index >= totalContacts) {
+    if (index >= _totalContacts) {
         std::cout << "No contact at this index." << std::endl;
         return;
     }
 
-    contacts[index].displayFull();
+    _contacts[index].displayFull();
 }

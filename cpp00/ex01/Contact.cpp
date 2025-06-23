@@ -2,28 +2,35 @@
 #include <iostream>
 #include <iomanip>
 
+
+// getters and setters (secure way to access private members)
+
+// TODO: ADD -> ctrl+D (remove information) 
+
 Contact::Contact() {}
 
+Contact::~Contact() {}
+
 bool Contact::isValid() const {
-    return !firstName.empty() && !lastName.empty() &&
-           !nickname.empty() && !phoneNumber.empty() && !darkestSecret.empty();
+    return !_firstName.empty() && !_lastName.empty() &&
+           !_nickname.empty() && !_phoneNumber.empty() && !_darkestSecret.empty();
 }
 
 void Contact::setContact() {
     std::cout << "First Name: ";
-    std::getline(std::cin, firstName);
+    std::getline(std::cin, _firstName);
 
     std::cout << "Last Name: ";
-    std::getline(std::cin, lastName);
+    std::getline(std::cin, _lastName);
 
     std::cout << "Nickname: ";
-    std::getline(std::cin, nickname);
+    std::getline(std::cin, _nickname);
 
     std::cout << "Phone Number: ";
-    std::getline(std::cin, phoneNumber);
+    std::getline(std::cin, _phoneNumber);
 
     std::cout << "Darkest Secret: ";
-    std::getline(std::cin, darkestSecret);
+    std::getline(std::cin, _darkestSecret);
 }
 
 static std::string formatField(const std::string& str) {
@@ -34,15 +41,15 @@ static std::string formatField(const std::string& str) {
 
 void Contact::displayShort(int index) const {
     std::cout << std::setw(10) << index << "|"
-              << std::setw(10) << formatField(firstName) << "|"
-              << std::setw(10) << formatField(lastName) << "|"
-              << std::setw(10) << formatField(nickname) << std::endl;
+              << std::setw(10) << formatField(_firstName) << "|"
+              << std::setw(10) << formatField(_lastName) << "|"
+              << std::setw(10) << formatField(_nickname) << std::endl;
 }
 
 void Contact::displayFull() const {
-    std::cout << "First Name: " << firstName << std::endl;
-    std::cout << "Last Name: " << lastName << std::endl;
-    std::cout << "Nickname: " << nickname << std::endl;
-    std::cout << "Phone Number: " << phoneNumber << std::endl;
-    std::cout << "Darkest Secret: " << darkestSecret << std::endl;
+    std::cout << "First Name: " << _firstName << std::endl;
+    std::cout << "Last Name: " << _lastName << std::endl;
+    std::cout << "Nickname: " << _nickname << std::endl;
+    std::cout << "Phone Number: " << _phoneNumber << std::endl;
+    std::cout << "Darkest Secret: " << _darkestSecret << std::endl;
 }

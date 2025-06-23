@@ -39,7 +39,6 @@ Account::Account(int initial_deposit)
               << ";created" << std::endl;
 }
 
-// Деструктор
 Account::~Account() {
     _displayTimestamp();
     std::cout << "index:" << _accountIndex
