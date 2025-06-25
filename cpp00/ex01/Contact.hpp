@@ -1,26 +1,35 @@
-#ifndef CONTACT_HPP
-#define CONTACT_HPP
+#pragma once
 
 #include <string>
-
-typedef std::string field_t;
-
 class Contact {
-private:
-    field_t _firstName;
-    field_t _lastName;
-    field_t _nickname;
-    field_t _phoneNumber;
-    field_t _darkestSecret;
-
 public:
     Contact();
 	~Contact();
     void setContact();
-    void displayShort(int index) const;
-    void displayFull() const;
     bool isValid() const;
 
-};
+	    // Getters
+    std::string getFirstName() const;
+    std::string getLastName() const;
+    std::string getNickname() const;
+    std::string getPhoneNumber() const;
+    std::string getDarkestSecret() const;
 
-#endif
+    // Setters
+    void setFirstName(const std::string& value);
+    void setLastName(const std::string& value);
+    void setNickname(const std::string& value);
+    void setPhoneNumber(const std::string& value);
+    void setDarkestSecret(const std::string& value);
+
+    void displayShort(int index) const;
+    void displayFull() const;
+
+private:
+    std::string _firstName;
+    std::string _lastName;
+    std::string _nickname;
+    std::string _phoneNumber;
+    std::string _darkestSecret;
+
+};

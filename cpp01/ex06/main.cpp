@@ -13,7 +13,7 @@ int getLevelIndex(const std::string& level) {
 
 int main(int argc, char **argv) {
     if (argc != 2) {
-        std::cerr << "Usage: ./harlFilter <level>" << std::endl;
+        std::cerr << "Usage: ./harlFilter <level>" << '\n';
         return 1;
     }
 
@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
             harl.complain("ERROR");
             break;
         default:
-            std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+            std::cout << "[ Probably complaining about insignificant problems ]" << '\n';
     }
 
     return 0;

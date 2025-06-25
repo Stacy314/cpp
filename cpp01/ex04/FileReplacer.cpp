@@ -25,7 +25,7 @@ std::string FileReplacer::replaceString(const std::string& content) {
 bool FileReplacer::process() {
     std::ifstream inputFile(_filename.c_str());
     if (!inputFile.is_open()) {
-        std::cerr << "Error: cannot open file " << _filename << std::endl;
+        std::cerr << "Error: cannot open file " << _filename << '\n';
         return false;
     }
 
@@ -37,7 +37,7 @@ bool FileReplacer::process() {
     std::ofstream outputFile((_filename + ".replace").c_str());
 
     if (!outputFile.is_open()) {
-        std::cerr << "Error: cannot create output file." << std::endl;
+        std::cerr << "Error: cannot create output file." << '\n';
         return false;
     }
 

@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv) {
     if (argc != 4) {
-        std::cerr << "Usage: ./replacer <filename> <s1> <s2>" << std::endl;
+        std::cerr << "Usage: ./replacer <filename> <s1> <s2>" << '\n';
         return 1;
     }
 
@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
     std::string s2 = argv[3];
 
     if (s1.empty()) {
-        std::cerr << "Error: s1 must not be empty." << std::endl;
+        std::cerr << "Error: s1 must not be empty." << '\n';
         return 1;
     }
 
@@ -20,6 +20,6 @@ int main(int argc, char** argv) {
     if (!replacer.process())
         return 1;
 
-    std::cout << "Replacements done. Output file: " << filename << ".replace" << std::endl;
+    std::cout << "Replacements done. Output file: " << filename << ".replace" << '\n';
     return 0;
 }

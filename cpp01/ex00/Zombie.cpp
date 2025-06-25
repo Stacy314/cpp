@@ -4,11 +4,11 @@
 //Zombie::Zombie(std::string name) : name(name) {}
 
 //Zombie::~Zombie() {
-//    std::cout << name << " is destroyed" << std::endl;
+//    std::cout << name << " is destroyed" << '\n';
 //}
 
 //void Zombie::announce() {
-//    std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+//    std::cout << name << ": BraiiiiiiinnnzzzZ..." << '\n';
 //}
 #include "Zombie.hpp"
 #include <iostream>
@@ -19,13 +19,13 @@
 #define RESET   "\033[0m"
 
 Zombie::Zombie(std::string name) : name(name) {
-    std::cout << GREEN << name << " rises from the grave..." << RESET << std::endl;
+    std::cout << GREEN << name << " rises from the grave..." << RESET << '\n';
 }
 
 Zombie::~Zombie() {
-    std::cout << RED << name << " is destroyed and returns to the void." << RESET << std::endl;
+    std::cout << RED << name << " is destroyed and returns to the void." << RESET << '\n';
 }
 
 void Zombie::announce() {
-    std::cout << YELLOW << name << ": BraiiiiiiinnnzzzZ..." << RESET << std::endl;
+    std::cout << YELLOW << name << ": BraiiiiiiinnnzzzZ..." << RESET << '\n';
 }

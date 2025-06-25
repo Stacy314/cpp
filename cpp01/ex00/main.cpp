@@ -23,18 +23,18 @@ void randomChump(std::string name);
 std::string getRandomName();
 
 int main() {
-    std::cout << "\n🧟 Welcome to ZOMBIE SHOW 198X 🧟‍♀️\n" << std::endl;
+    std::cout << "\n🧟 Welcome to ZOMBIE SHOW 198X 🧟‍♀️\n" << '\n';
 
     Zombie* heapZombie = newZombie("HeapZ");
     heapZombie->announce();
 
-    std::cout << "\n💥 RANDOM ZOMBIES ON STAGE:\n" << std::endl;
+    std::cout << "\n💥 RANDOM ZOMBIES ON STAGE:\n" << '\n';
     for (int i = 0; i < 3; i++) {
         randomChump(getRandomName());
     }
 
     delete heapZombie;
 
-    std::cout << "\n🏁 Show over. The graveyard sleeps again.\n" << std::endl;
+    std::cout << "\n🏁 Show over. The graveyard sleeps again.\n" << '\n';
     return 0;
 }

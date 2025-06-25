@@ -13,7 +13,7 @@ int main()
         bob.attack();
     }
 
-    std::cout << "--------" << std::endl;
+    std::cout << "--------" << '\n';
 
     {
         Weapon club("crude spiked club");

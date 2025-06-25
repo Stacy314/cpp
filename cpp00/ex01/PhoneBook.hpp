@@ -1,5 +1,4 @@
-#ifndef PHONEBOOK_HPP
-#define PHONEBOOK_HPP
+#pragma once
 
 #include "Contact.hpp"
 
@@ -15,5 +14,3 @@ public:
     void addContact();
     void searchContact() const;
 };
-
-#endif

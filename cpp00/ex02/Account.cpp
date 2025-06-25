@@ -36,14 +36,14 @@ Account::Account(int initial_deposit)
     _displayTimestamp();
     std::cout << "index:" << _accountIndex
               << ";amount:" << _amount
-              << ";created" << std::endl;
+              << ";created" << '\n';
 }
 
 Account::~Account() {
     _displayTimestamp();
     std::cout << "index:" << _accountIndex
               << ";amount:" << _amount
-              << ";closed" << std::endl;
+              << ";closed" << '\n';
 }
 
 // Статичний метод
@@ -53,7 +53,7 @@ void Account::displayAccountsInfos() {
               << ";total:" << _totalAmount
               << ";deposits:" << _totalNbDeposits
               << ";withdrawals:" << _totalNbWithdrawals
-              << std::endl;
+              << '\n';
 }
 
 void Account::displayStatus() const {
@@ -62,7 +62,7 @@ void Account::displayStatus() const {
               << ";amount:" << _amount
               << ";deposits:" << _nbDeposits
               << ";withdrawals:" << _nbWithdrawals
-              << std::endl;
+              << '\n';
 }
 
 void Account::makeDeposit(int deposit) {
@@ -78,7 +78,7 @@ void Account::makeDeposit(int deposit) {
 
     std::cout << ";amount:" << _amount
               << ";nb_deposits:" << _nbDeposits
-              << std::endl;
+              << '\n';
 }
 
 bool Account::makeWithdrawal(int withdrawal) {
@@ -87,7 +87,7 @@ bool Account::makeWithdrawal(int withdrawal) {
               << ";p_amount:" << _amount;
 
     if (withdrawal > _amount) {
-        std::cout << ";withdrawal:refused" << std::endl;
+        std::cout << ";withdrawal:refused" << '\n';
         return false;
     }
 
@@ -99,7 +99,7 @@ bool Account::makeWithdrawal(int withdrawal) {
     std::cout << ";withdrawal:" << withdrawal
               << ";amount:" << _amount
               << ";nb_withdrawals:" << _nbWithdrawals
-              << std::endl;
+              << '\n';
     return true;
 }
 

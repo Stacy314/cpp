@@ -7,7 +7,7 @@ int main() {
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR", "RANDOM"};
 
     for (int i = 0; i < 5; ++i) {
-        std::cout << "\n👉 Calling level: " << levels[i] << "\n" << std::endl;
+        std::cout << "\n👉 Calling level: " << levels[i] << "\n" << '\n';
         harl.complain(levels[i]);
     }
 
