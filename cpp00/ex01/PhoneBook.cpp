@@ -2,8 +2,6 @@
 #include <iostream>
 #include <iomanip>
 
-//TODO protect number, space q
-
 PhoneBook::PhoneBook() : _totalContacts(0), _oldestIndex(0) {}
 
 PhoneBook::~PhoneBook() {}

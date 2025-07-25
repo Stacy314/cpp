@@ -1,7 +1,7 @@
 #include "Account.hpp"
 #include <iostream>
-#include <ctime> // For time functions
-#include <iomanip> // For std::setw and std::setfill
+#include <ctime>
+#include <iomanip>
 
 int Account::_nbAccounts = 0; // Total number of accounts 
 int Account::_totalAmount = 0; // Total amount across all accounts

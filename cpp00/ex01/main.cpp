@@ -17,12 +17,11 @@ int	main(void)
 			phoneBook.searchContact();
 		else if (command == "EXIT")  {
 			std::cout << "Goodbye 😿\n";
-			return (0);
+			return 0;
 		}
-		else if (std::cin.eof())
-		{
+		else if (std::cin.eof()){
 			std::cout << "Seriously? 😾\n";
-			return (0);
+			return 0;
 		}
 		else
 			std::cerr << "\"" << command << "\"? I have never heard it before. 🙀\n";
