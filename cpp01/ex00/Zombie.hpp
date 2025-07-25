@@ -1,36 +1,20 @@
-//#ifndef ZOMBIE_HPP
-//#define ZOMBIE_HPP
-
+#pragma once
 //#include <string>
+#include <iostream>
 
-//class Zombie {
-//private:
-//    std::string name;
-
-//public:
-//    Zombie(std::string name);
-//    ~Zombie();
-
-//    void announce();
-//};
-
-//#endif
-
-
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
-
-#include <string>
-
+#define GREEN   "\033[32m"
+#define RED     "\033[31m"
+#define YELLOW  "\033[33m"
+#define RESET   "\033[0m"
 class Zombie {
-private:
-    std::string name;
-
 public:
     Zombie(std::string name);
     ~Zombie();
-
     void announce();
+
+private:
+    std::string name;
 };
 
-#endif
+Zombie* newZombie(std::string name);
+void randomChump(std::string name);

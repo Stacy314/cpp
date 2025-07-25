@@ -1,15 +1,13 @@
 #include "Account.hpp"
 #include <iostream>
-#include <ctime>
-#include <iomanip>
+#include <ctime> // For time functions
+#include <iomanip> // For std::setw and std::setfill
 
-// Ініціалізація статичних змінних
-int Account::_nbAccounts = 0;
-int Account::_totalAmount = 0;
-int Account::_totalNbDeposits = 0;
-int Account::_totalNbWithdrawals = 0;
+int Account::_nbAccounts = 0; // Total number of accounts 
+int Account::_totalAmount = 0; // Total amount across all accounts
+int Account::_totalNbDeposits = 0; // Total number of deposits across all accounts
+int Account::_totalNbWithdrawals = 0; // Total number of withdrawals across all accounts
 
-// Приватна утиліта для таймстемпу
 void Account::_displayTimestamp() {
     std::time_t t = std::time(NULL);
     std::tm *now = std::localtime(&t);
@@ -23,7 +21,6 @@ void Account::_displayTimestamp() {
               << "] ";
 }
 
-// Конструктор
 Account::Account(int initial_deposit)
     : _accountIndex(_nbAccounts),
       _amount(initial_deposit),
@@ -46,7 +43,6 @@ Account::~Account() {
               << ";closed" << '\n';
 }
 
-// Статичний метод
 void Account::displayAccountsInfos() {
     _displayTimestamp();
     std::cout << "accounts:" << _nbAccounts
@@ -103,7 +99,6 @@ bool Account::makeWithdrawal(int withdrawal) {
     return true;
 }
 
-// Прості геттери
 int Account::checkAmount() const {
     return _amount;
 }

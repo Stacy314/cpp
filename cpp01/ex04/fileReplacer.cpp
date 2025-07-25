@@ -1,4 +1,4 @@
-#include "FileReplacer.hpp"
+#include "fileReplacer.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -7,7 +7,7 @@ FileReplacer::FileReplacer(const std::string& filename, const std::string& s1, c
 
 FileReplacer::~FileReplacer() {}
 
-std::string FileReplacer::replaceString(const std::string& content) {
+std::string FileReplacer::_replaceString(const std::string& content) {
     std::string result;
     std::size_t start = 0;
     std::size_t pos;
@@ -28,19 +28,15 @@ bool FileReplacer::process() {
         std::cerr << "Error: cannot open file " << _filename << '\n';
         return false;
     }
-
     std::string content((std::istreambuf_iterator<char>(inputFile)),
                          std::istreambuf_iterator<char>());
     inputFile.close();
-
-    std::string replaced = replaceString(content);
+    std::string replaced = _replaceString(content);
     std::ofstream outputFile((_filename + ".replace").c_str());
-
     if (!outputFile.is_open()) {
         std::cerr << "Error: cannot create output file." << '\n';
         return false;
     }
-
     outputFile << replaced;
     outputFile.close();
     return true;

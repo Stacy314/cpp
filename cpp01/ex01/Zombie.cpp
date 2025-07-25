@@ -1,9 +1,4 @@
 #include "Zombie.hpp"
-#include <iostream>
-
-#define YELLOW  "\033[33m"
-#define RED     "\033[31m"
-#define RESET   "\033[0m"
 
 Zombie::Zombie() {}
 

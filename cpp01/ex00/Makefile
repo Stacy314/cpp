@@ -1,46 +1,31 @@
-#NAME = zombies
-
-#CXX = c++
-#CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-
-#SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
-#OBJS = $(SRCS:.cpp=.o)
-
-#all: $(NAME)
-
-#$(NAME): $(OBJS)
-#	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
-
-#clean:
-#	rm -f $(OBJS)
-
-#fclean: clean
-#	rm -f $(NAME)
-
-#re: fclean all
-
-#.PHONY: all clean fclean re
-
-
-NAME = zombies
-
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-
-SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
-OBJS = $(SRCS:.cpp=.o)
+NAME	= zombie
+CC		= c++
+CFLAGS	= -Wall -Wextra -Werror -g -std=c++98
+SRC		= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+OBJ		= $(SRC:%.cpp=%.o)
+RM 		= rm -f
+SILENT 	= @
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	$(SILENT)$(CC) $(OBJ) $(CFLAGS) -o $@
+	@echo "░█████╗░██████╗░██████╗░░█████╗░░░███╗░░"
+	@echo "██╔══██╗██╔══██╗██╔══██╗██╔══██╗░████║░░"
+	@echo "██║░░╚═╝██████╔╝██████╔╝██║░░██║██╔██║░░"
+	@echo "██║░░██╗██╔═══╝░██╔═══╝░██║░░██║╚═╝██║░░"
+	@echo "╚█████╔╝██║░░░░░██║░░░░░╚█████╔╝███████╗"
+	@echo "░╚════╝░╚═╝░░░░░╚═╝░░░░░░╚════╝░╚══════╝"
+
+%.o: %.cpp
+	$(SILENT)$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	$(SILENT)$(RM) $(OBJ)
 
-fclean: clean
-	rm -f $(NAME)
+fclean:
+	$(SILENT)$(RM) $(OBJ) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY	: all clean fclean re

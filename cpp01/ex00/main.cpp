@@ -1,40 +1,10 @@
-//#include "Zombie.hpp"
-
-//Zombie* newZombie(std::string name);
-//void randomChump(std::string name);
-
-//int main() {
-//    Zombie* heapZombie = newZombie("HeapZ");
-//    heapZombie->announce();
-
-//    randomChump("StackZ");
-
-//    delete heapZombie;
-//    return 0;
-//}
-
-
 #include "Zombie.hpp"
-#include <iostream>
 
-// Прототипи
-Zombie* newZombie(std::string name);
-void randomChump(std::string name);
-std::string getRandomName();
-
-int main() {
-    std::cout << "\n🧟 Welcome to ZOMBIE SHOW 198X 🧟‍♀️\n" << '\n';
-
-    Zombie* heapZombie = newZombie("HeapZ");
-    heapZombie->announce();
-
-    std::cout << "\n💥 RANDOM ZOMBIES ON STAGE:\n" << '\n';
-    for (int i = 0; i < 3; i++) {
-        randomChump(getRandomName());
-    }
-
-    delete heapZombie;
-
-    std::cout << "\n🏁 Show over. The graveyard sleeps again.\n" << '\n';
-    return 0;
+int main ()
+{
+	randomChump("Foo");
+	Zombie *zombie = newZombie("Boo");
+	if (!zombie)
+		return 1;
+	delete zombie;
 }

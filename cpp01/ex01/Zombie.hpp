@@ -1,18 +1,20 @@
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
+#pragma once
 
-#include <string>
+//#include <string>
+#include <iostream>
+
+#define YELLOW  "\033[33m"
+#define RED     "\033[31m"
+#define RESET   "\033[0m"
 
 class Zombie {
-private:
-    std::string name;
-
 public:
     Zombie();
     ~Zombie();
-
     void setName(std::string name);
     void announce();
-};
+	std::string getRandomName();
 
-#endif
+private:
+    std::string name;
+};
