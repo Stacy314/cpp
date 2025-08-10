@@ -1,4 +1,7 @@
-.o*
+*.o
+megaphone
+phonebook
+account
 zombies
 horde
 brain
