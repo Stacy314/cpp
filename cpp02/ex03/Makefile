@@ -1,7 +1,7 @@
-NAME	= fixed
+NAME	= zombie
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -g -std=c++98
-SRC		= main.cpp Fixed.cpp
+SRC		= main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJ		= $(SRC:%.cpp=%.o)
 RM 		= rm -f
 SILENT 	= @

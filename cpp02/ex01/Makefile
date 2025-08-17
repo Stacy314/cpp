@@ -1,4 +1,4 @@
-NAME	= fixed
+NAME	= zombie
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -g -std=c++98
 SRC		= main.cpp Fixed.cpp
