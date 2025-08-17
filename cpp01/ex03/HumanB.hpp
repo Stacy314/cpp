@@ -1,12 +1,14 @@
 #ifndef HUMANB_HPP
 #define HUMANB_HPP
+#pragma once
 
-#include "Weapon.hpp"
 #include <string>
+
+class Weapon;
 
 class HumanB {
 public:
-    HumanB(std::string name);
+	HumanB(const std::string& name);
     ~HumanB();
     void setWeapon(Weapon& weapon);
     void attack() const;

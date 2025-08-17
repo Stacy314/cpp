@@ -1,6 +1,7 @@
+#ifndef ZOMBIE_HPP
+#define ZOMBIE_HPP
 #pragma once
 
-//#include <string>
 #include <iostream>
 
 #define YELLOW  "\033[33m"
@@ -13,8 +14,9 @@ public:
     ~Zombie();
     void setName(std::string name);
     void announce();
-	std::string getRandomName();
 
 private:
     std::string name;
 };
+
+#endif

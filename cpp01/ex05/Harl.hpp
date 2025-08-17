@@ -1,5 +1,6 @@
 #ifndef HARL_HPP
 #define HARL_HPP
+#pragma once
 
 #include <string>
 

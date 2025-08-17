@@ -1,5 +1,6 @@
-#ifndef WEAPON_HPP //for several .hpp?
+#ifndef WEAPON_HPP
 #define WEAPON_HPP
+#pragma once
 
 #include <string>
 

@@ -1,15 +1,13 @@
 #include "Harl.hpp"
 #include <iostream>
 
-int main() {
+int main(int argc, char **argv) {
     Harl harl;
 
-    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"/*, "RANDOM"*/};
-
-    for (int i = 0; i < 4; ++i) {
-        std::cout << "\n👉 Calling level: " << levels[i] << "\n" << '\n';
-        harl.complain(levels[i]);
+	if (argc != 2) {
+        std::cerr << "Usage: ./harl <level>" << '\n';
+        return 1;
     }
-
+	harl.complain(argv[1]);
     return 0;
 }

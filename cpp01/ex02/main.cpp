@@ -1,7 +1,13 @@
 #include <iostream>
 #include <string>
 
-int main() {
+int main(int argc, char **argv) {
+	(void)argv;
+	if (argc != 1)
+	{
+		std::cout << "Usage: ./brain\n";
+		return 1;
+	}
     std::string brain = "HI THIS IS BRAIN";
     std::string* stringPTR = &brain;
     std::string& stringREF = brain;

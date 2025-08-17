@@ -1,10 +1,16 @@
-#include <iostream>
 #include "Weapon.hpp"
 #include "HumanA.hpp"
 #include "HumanB.hpp"
+#include <iostream>
 
-int main()
+int main(int argc, char **argv)
 {
+	(void)argv;
+	if (argc != 1)
+	{
+		std::cout << "Usage: ./violence\n";
+		return 1;
+	}
 	{
 	Weapon club = Weapon("crude spiked club");
 	HumanA bob("Bob", club);
