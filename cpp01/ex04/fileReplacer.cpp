@@ -25,19 +25,29 @@ std::string FileReplacer::_replaceString(const std::string& content) {
 bool FileReplacer::process() {
     std::ifstream inputFile(_filename.c_str());
     if (!inputFile.is_open()) {
-        std::cerr << "Error: cannot open file " << _filename << '\n';
+        std::cerr << "Error: cannot open file " << _filename << ".\n";
         return false;
     }
-    std::string content((std::istreambuf_iterator<char>(inputFile)),
-                         std::istreambuf_iterator<char>());
+
+	std::string content;
+	char ch;
+	while (inputFile.get(ch))
+		content += ch;
     inputFile.close();
+
     std::string replaced = _replaceString(content);
+	if (replaced == content) {
+        std::cerr << "Warning: no replacements were made. Pattern not found.\n";
+        return false;
+    }
+
     std::ofstream outputFile((_filename + ".replace").c_str());
     if (!outputFile.is_open()) {
         std::cerr << "Error: cannot create output file." << '\n';
         return false;
     }
     outputFile << replaced;
-    outputFile.close();
+	outputFile.close();
+	
     return true;
 }

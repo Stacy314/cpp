@@ -1,5 +1,6 @@
 #ifndef FILEREPLACER_HPP
 #define FILEREPLACER_HPP
+#pragma once
 
 #include <string>
 

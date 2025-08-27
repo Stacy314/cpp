@@ -1,8 +1,14 @@
+<<<<<<< HEAD:.gitignore
 *.o
 *.d
 megaphone
 phonebook
 account
+=======
+.o*
+.txt*
+.replace*
+>>>>>>> 7c1f69aa8b086069c441ec4308e6f91de5b47b2b:cpp01/.gitignore
 zombies
 horde
 brain
