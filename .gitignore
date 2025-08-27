@@ -1,4 +1,5 @@
 *.o
+*.d
 megaphone
 phonebook
 account

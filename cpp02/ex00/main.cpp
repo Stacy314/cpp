@@ -1,8 +1,7 @@
-#include <iostream>
 #include "Fixed.hpp"
 
 int main(void) {
-    Fixed a;
+    const Fixed a;
     Fixed b(a);
     Fixed c;
 

@@ -1,8 +1,9 @@
 NAME	= zombie
 CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -g -std=c++98
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -MP
 SRC		= main.cpp Fixed.cpp
-OBJ		= $(SRC:%.cpp=%.o)
+OBJ		= $(SRC:.cpp=.o)
+DEP		= $(SRC:.cpp=.d)
 RM 		= rm -f
 SILENT 	= @
 
@@ -16,6 +17,8 @@ $(NAME): $(OBJ)
 	@echo "██║░░██╗██╔═══╝░██╔═══╝░██║░░██║██╔══╝░░"
 	@echo "╚█████╔╝██║░░░░░██║░░░░░╚█████╔╝███████╗"
 	@echo "░╚════╝░╚═╝░░░░░╚═╝░░░░░░╚════╝░╚══════╝"
+
+-include $(DEP)
 
 %.o: %.cpp
 	$(SILENT)$(CC) $(CFLAGS) -c $< -o $@
