@@ -1,36 +1,40 @@
 #include "Fixed.hpp"
 #include <cmath>
 
+//1 << n  ==  2^n
+//0000 0000 0000 0001  = 1
+//0000 0001 0000 0000  = 256
+
 Fixed::Fixed() : _value(0) {
-    std::cout << "Default constructor called" << std::endl;
-}
-
-Fixed::Fixed(const Fixed& other) : _value(other._value) {
-    std::cout << "Copy constructor called" << std::endl;
-}
-
-Fixed& Fixed::operator=(const Fixed& other) {
-    std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &other) this->_value = other._value;
-    return *this;
-}
-
-Fixed::~Fixed() {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "Default constructor called\n";
 }
 
 Fixed::Fixed(int n) {
-    std::cout << "Int constructor called" << std::endl;
+    std::cout << "Int constructor called\n";
     _value = n << _fractionalBits;
 }
 
 Fixed::Fixed(float f) {
-    std::cout << "Float constructor called" << std::endl;
-    _value = static_cast<int>(roundf(f * (1 << _fractionalBits)));
+    std::cout << "Float constructor called\n";
+    _value = (roundf(f * (1 << _fractionalBits))); //multiply by 256
+}
+
+Fixed::Fixed(const Fixed& src) : _value(src._value) {
+    std::cout << "Copy constructor called\n";
+}
+
+Fixed& Fixed::operator=(const Fixed& src) {
+    std::cout << "Copy assignment operator called\n";
+    if (this != &src) this->_value = src._value;
+    return *this;
+}
+
+Fixed::~Fixed() {
+    std::cout << "Destructor called\n";
 }
 
 float Fixed::toFloat(void) const {
-    return static_cast<float>(_value) / static_cast<float>(1 << _fractionalBits);
+    return (float)(_value) / (float)(1 << _fractionalBits);
 }
 
 int Fixed::toInt(void) const {
@@ -38,7 +42,7 @@ int Fixed::toInt(void) const {
 }
 
 int Fixed::getRawBits(void) const {
-    std::cout << "getRawBits member function called" << std::endl;
+    std::cout << "getRawBits member function called\n";
     return _value;
 }
 
