@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Fixed.hpp"
 
 int main(void) {
@@ -12,6 +11,8 @@ int main(void) {
     std::cout << a << std::endl;
 
     std::cout << b << std::endl;
+
     std::cout << Fixed::max(a, b) << std::endl;
+	
     return 0;
 }

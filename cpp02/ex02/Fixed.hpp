@@ -1,4 +1,8 @@
-#pragma once
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
+#include <iostream>
+
 
 class Fixed {
 private:
@@ -6,22 +10,20 @@ private:
     static const int    _fractionalBits = 8;
 
 public:
-    // Orthodox Canonical Form
+
     Fixed();
-    Fixed(const Fixed& other);
-    Fixed& operator=(const Fixed& other);
+	Fixed(const int n);
+    Fixed(const float f);
+    Fixed(const Fixed& src);
+    Fixed& operator=(const Fixed& src);
     ~Fixed();
-
-    // Converters
-    Fixed(int n);
-    Fixed(float f);
-
+  
     float toFloat(void) const;
     int   toInt(void) const;
 
     int  getRawBits(void) const;
     void setRawBits(int const raw);
-
+	
     // Comparison operators
     bool operator>(const Fixed& rhs) const;
     bool operator<(const Fixed& rhs) const;
@@ -50,3 +52,5 @@ public:
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fx);
+
+#endif

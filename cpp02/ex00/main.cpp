@@ -1,15 +1,15 @@
 #include "Fixed.hpp"
 
 int main(void) {
-    const Fixed a;
-    Fixed b(a);
-    Fixed c;
+    Fixed a; //constructor
+    Fixed b(a); //сopy constructor
+    Fixed c; //constructor
 
-    c = b;
+    c = b; //copy assignment(doesn't create a new object)
 
     std::cout << a.getRawBits() << std::endl;
     std::cout << b.getRawBits() << std::endl;
     std::cout << c.getRawBits() << std::endl;
 	
-    return 0;
+    return 0; //destructor (3 times)
 }

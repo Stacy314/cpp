@@ -1,6 +1,6 @@
 NAME	= fixed
-CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -MP
+CXX		= c++
+CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -MMD -MP
 SRC		= main.cpp Fixed.cpp
 OBJ		= $(SRC:.cpp=.o)
 DEP		= $(SRC:.cpp=.d)
@@ -10,7 +10,7 @@ SILENT 	= @
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(SILENT)$(CC) $(OBJ) $(CFLAGS) -o $@
+	$(SILENT)$(CXX) $(OBJ) $(CXXFLAGS) -o $@
 	@echo "░█████╗░██████╗░██████╗░░█████╗░██████╗░"
 	@echo "██╔══██╗██╔══██╗██╔══██╗██╔══██╗╚════██╗"
 	@echo "██║░░╚═╝██████╔╝██████╔╝██║░░██║░░███╔═╝"
@@ -21,13 +21,13 @@ $(NAME): $(OBJ)
 -include $(DEP)
 
 %.o: %.cpp
-	$(SILENT)$(CC) $(CFLAGS) -c $< -o $@
+	$(SILENT)$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(SILENT)$(RM) $(OBJ)
+	$(SILENT)$(RM) $(OBJ) $(DEP)
 
-fclean:
-	$(SILENT)$(RM) $(OBJ) $(NAME)
+fclean: clean
+	$(SILENT)$(RM) $(NAME)
 
 re: fclean all
 

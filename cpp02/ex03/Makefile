@@ -1,6 +1,6 @@
 NAME	= fixed
-CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -MP
+CXX		= c++
+CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -MMD -MP
 SRC		= main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJ		= $(SRC:.cpp=.o)
 DEP		= $(SRC:.cpp=.d)
@@ -24,10 +24,10 @@ $(NAME): $(OBJ)
 	$(SILENT)$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(SILENT)$(RM) $(OBJ)
+	$(SILENT)$(RM) $(OBJ) $(DEP)
 
-fclean:
-	$(SILENT)$(RM) $(OBJ) $(NAME)
+fclean: clean
+	$(SILENT)$(RM) $(NAME)
 
 re: fclean all
 
