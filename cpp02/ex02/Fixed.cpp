@@ -46,104 +46,102 @@ void Fixed::setRawBits(int const raw) {
     _value = raw;
 }
 
-// Comparisons
-bool Fixed::operator>(const Fixed &rhs) const{
-	return (_value > rhs._value);
-}
-
-bool Fixed::operator<(const Fixed &rhs) const
-{
-	return (_value < rhs._value);
-}
-bool Fixed::operator>=(const Fixed &rhs) const
-{
-	return (_value >= rhs._value);
-}
-bool Fixed::operator<=(const Fixed &rhs) const
-{
-	return (_value <= rhs._value);
-}
-bool Fixed::operator==(const Fixed &rhs) const
-{
-	return (_value == rhs._value);
-}
-bool Fixed::operator!=(const Fixed &rhs) const
-{
-	return (_value != rhs._value);
-}
-
-// Arithmetic (use 64-bit intermediates to preserve precision)
-Fixed Fixed::operator+(const Fixed &rhs) const
-{
-	Fixed r;
-	r._value = _value + rhs._value;
-	return (r);
-}
-Fixed Fixed::operator-(const Fixed &rhs) const
-{
-	Fixed r;
-	r._value = _value - rhs._value;
-	return (r);
-}
-Fixed Fixed::operator*(const Fixed &rhs) const
-{
-	Fixed r;
-	long a = static_cast<long>(_value);
-	long b = static_cast<long>(rhs._value);
-	r._value = static_cast<int>((a * b) >> _fractionalBits);
-	return (r);
-}
-Fixed Fixed::operator/(const Fixed &rhs) const
-{
-	Fixed r;
-	long a = static_cast<long>(_value) << _fractionalBits;
-	long b = static_cast<long>(rhs._value); // may be 0 → UB allowed by subject
-	r._value = static_cast<int>(a / b);
-	return (r);
-}
-
-// ++/-- step is 1 LSB (epsilon)
-Fixed &Fixed::operator++()
-{
-	++_value;
-	return (*this);
-}
-Fixed Fixed::operator++(int)
-{
-	Fixed tmp(*this);
-	++_value;
-	return (tmp);
-}
-Fixed &Fixed::operator--()
-{
-	--_value;
-	return *this;
-}
-Fixed Fixed::operator--(int)
-{
-	Fixed tmp(*this);
-	--_value;
-	return tmp;
-}
-
-Fixed &Fixed::min(Fixed &a, Fixed &b)
-{
-	return (a < b) ? a : b;
-}
-const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
-{
-	return (a < b) ? a : b;
-}
-Fixed &Fixed::max(Fixed &a, Fixed &b)
-{
-	return (a > b) ? a : b;
-}
-const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
-{
-	return (a > b) ? a : b;
-}
-
 std::ostream& operator<<(std::ostream& os, const Fixed& fx) {
     os << fx.toFloat();
     return os;
+}
+
+// comparison operators
+bool Fixed::operator>(const Fixed &rhs) const {
+	return (_value > rhs._value);
+}
+
+bool Fixed::operator<(const Fixed &rhs) const {
+	return (_value < rhs._value);
+}
+
+bool Fixed::operator>=(const Fixed &rhs) const {
+	return (_value >= rhs._value);
+}
+bool Fixed::operator<=(const Fixed &rhs) const {
+	return (_value <= rhs._value);
+}
+
+bool Fixed::operator==(const Fixed &rhs) const {
+	return (_value == rhs._value);
+}
+
+bool Fixed::operator!=(const Fixed &rhs) const {
+	return (_value != rhs._value);
+}
+
+// arithmetic operators
+Fixed Fixed::operator+(const Fixed &rhs) const {
+	Fixed result;
+	result._value = _value + rhs._value;
+	return (result);
+}
+
+Fixed Fixed::operator-(const Fixed &rhs) const {
+	Fixed result;
+	result._value = _value - rhs._value;
+	return (result);
+}
+
+Fixed Fixed::operator*(const Fixed &rhs) const {
+	Fixed result;
+	long a = (long)(_value);
+	long b = (long)(rhs._value);
+	result._value = (int)((a * b) >> _fractionalBits);
+	return (result);
+}
+
+Fixed Fixed::operator/(const Fixed &rhs) const {
+	if (rhs._value == 0)
+        throw std::runtime_error("Oh-oh, divide by 0, rascal?");
+	Fixed result;
+	long a = (long)(_value) << _fractionalBits;
+	long b = (long)(rhs._value);
+	result._value = (int)(a / b);
+	return (result);
+}
+
+// increment/decrement operators
+Fixed &Fixed::operator++() {
+	++_value;
+	return (*this);
+}
+
+Fixed Fixed::operator++(int) {
+	Fixed origin(*this);
+	++_value;
+	return (origin);
+}
+
+Fixed &Fixed::operator--() {
+	--_value;
+	return *this;
+}
+
+Fixed Fixed::operator--(int) {
+	Fixed origin(*this);
+	--_value;
+	return origin;
+}
+
+//min and max
+Fixed &Fixed::min(Fixed &a, Fixed &b) {
+	return (a < b) ? a : b;
+}
+
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b) {
+	return (a < b) ? a : b;
+}
+
+Fixed &Fixed::max(Fixed &a, Fixed &b) {
+	return (a > b) ? a : b;
+}
+
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b) {
+	return (a > b) ? a : b;
 }
