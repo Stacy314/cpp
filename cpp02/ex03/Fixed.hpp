@@ -1,6 +1,7 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
-#include <ostream>
+
+#include <iostream>
 
 class Fixed {
 private:
@@ -8,23 +9,21 @@ private:
     static const int    _fractionalBits = 8;
 
 public:
-    // Orthodox Canonical Form
+
     Fixed();
-    Fixed(const Fixed& other);
-    Fixed& operator=(const Fixed& other);
+	Fixed(const int n);
+    Fixed(const float f);
+    Fixed(const Fixed& src);
+    Fixed& operator=(const Fixed& src);
     ~Fixed();
-
-    // Converters
-    Fixed(int n);
-    Fixed(float f);
-
+  
     float toFloat(void) const;
     int   toInt(void) const;
 
     int  getRawBits(void) const;
     void setRawBits(int const raw);
-
-    // Comparison operators
+	
+    // comparison operators
     bool operator>(const Fixed& rhs) const;
     bool operator<(const Fixed& rhs) const;
     bool operator>=(const Fixed& rhs) const;
@@ -32,19 +31,19 @@ public:
     bool operator==(const Fixed& rhs) const;
     bool operator!=(const Fixed& rhs) const;
 
-    // Arithmetic operators
+    // arithmetic operators
     Fixed operator+(const Fixed& rhs) const;
     Fixed operator-(const Fixed& rhs) const;
     Fixed operator*(const Fixed& rhs) const;
-    Fixed operator/(const Fixed& rhs) const; // Division by 0 is UB (allowed to crash per subject)
+    Fixed operator/(const Fixed& rhs) const;
 
-    // Pre/Post inc/dec
+    // increment/decrement operators
     Fixed& operator++();      // ++a
     Fixed  operator++(int);   // a++
     Fixed& operator--();      // --a
     Fixed  operator--(int);   // a--
 
-    // Min/Max
+    //min and max
     static Fixed&       min(Fixed& a, Fixed& b);
     static const Fixed& min(const Fixed& a, const Fixed& b);
     static Fixed&       max(Fixed& a, Fixed& b);

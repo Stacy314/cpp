@@ -9,11 +9,10 @@ private:
     const Fixed _y;
 
 public:
-    // Orthodox Canonical Form
     Point();
     Point(const float x, const float y);
     Point(const Point& other);
-    Point& operator=(const Point& other); // Defined but does nothing due to const members
+    Point& operator=(const Point& other);
     ~Point();
 
     const Fixed& getX() const;
