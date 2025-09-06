@@ -2,26 +2,33 @@
 
 FragTrap::FragTrap() : ClapTrap("noname_frag") {
     _hitPoints = 100; _energyPoints = 100; _attackDamage = 30;
-    std::cout << "[FragTrap] Default ctor: " << _name << std::endl;
+    std::cout << "[FragTrap] A mysterious warrior with no name bursts onto the battlefield!\n";
 }
 
 FragTrap::FragTrap(const std::string& name) : ClapTrap(name) {
     _hitPoints = 100; _energyPoints = 100; _attackDamage = 30;
-    std::cout << "[FragTrap] Ctor(name): " << _name << std::endl;
+    std::cout << "[FragTrap] " << GREEN << _name << RESET << " enters the arena, glowing with explosive energy!\n";
+
 }
 
 FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other) {
-    std::cout << "[FragTrap] Copy ctor: " << _name << std::endl;
+    std::cout << "[FragTrap] " << BLUE << _name << RESET << " has been cloned — double the firepower, double the chaos!\n";
+
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& other) {
     if (this != &other) {
         ClapTrap::operator=(other);
     }
-    std::cout << "[FragTrap] Copy assign: " << _name << std::endl;
+    std::cout << "[FragTrap] " << YELLOW << _name << RESET << " just synced battle data with another FragTrap. Ready for more carnage!\n";
+
     return *this;
 }
 
-FragTrap::~FragTrap() { std::cout << "[FragTrap] Dtor: " << _name << std::endl; }
+FragTrap::~FragTrap() {
+    std::cout << "[FragTrap] " << RED << _name << RESET << " collapses in a blaze of glory. BOOM! (self-destruct sequence complete)\n";
+}
 
-void FragTrap::highFivesGuys(void) { std::cout << "FragTrap " << _name << ": High fives, guys!!!" << std::endl; }
+void FragTrap::highFivesGuys(void) {
+    std::cout << "[FragTrap] " << _name << ": High fives, guys!!!\n";
+}
