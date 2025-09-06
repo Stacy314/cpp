@@ -1,4 +1,4 @@
-NAME	= violence
+NAME	= violence.out
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -g -std=c++98
 SRC		= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp

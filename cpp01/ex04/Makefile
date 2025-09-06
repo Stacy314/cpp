@@ -1,4 +1,4 @@
-NAME 	= replacer
+NAME 	= replacer.out
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -g -std=c++98
 SRC		= main.cpp fileReplacer.cpp

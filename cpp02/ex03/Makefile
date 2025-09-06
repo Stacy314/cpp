@@ -1,4 +1,4 @@
-NAME	= fixed
+NAME	= fixed.out
 CXX		= c++
 CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -MMD -MP
 SRC		= main.cpp Fixed.cpp Point.cpp bsp.cpp
@@ -10,7 +10,7 @@ SILENT 	= @
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(SILENT)$(CC) $(OBJ) $(CFLAGS) -o $@
+	$(SILENT)$(CXX) $(OBJ) $(CXXFLAGS) -o $@
 	@echo "░█████╗░██████╗░██████╗░░█████╗░██████╗░"
 	@echo "██╔══██╗██╔══██╗██╔══██╗██╔══██╗╚════██╗"
 	@echo "██║░░╚═╝██████╔╝██████╔╝██║░░██║░░███╔═╝"
@@ -21,7 +21,7 @@ $(NAME): $(OBJ)
 -include $(DEP)
 
 %.o: %.cpp
-	$(SILENT)$(CC) $(CFLAGS) -c $< -o $@
+	$(SILENT)$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	$(SILENT)$(RM) $(OBJ) $(DEP)

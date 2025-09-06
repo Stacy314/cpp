@@ -1,14 +1,6 @@
 *.o
 *.d
+*.out
 .txt*
 .replace*
-megaphone
-phonebook
-account
-zombies
-horde
-brain
-violence
-harl
-harlFilter
-fixed
+

@@ -1,4 +1,4 @@
-NAME	= fixed
+NAME	= fixed.out
 CXX		= c++
 CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -MMD -MP
 SRC		= main.cpp Fixed.cpp

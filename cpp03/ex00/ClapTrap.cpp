@@ -1,26 +1,116 @@
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#include "ClapTrap.hpp"
 
-#include <iostream>
-#include <string>
+// const unsigned int ClapTrap::kDefaultHP     = 10;
+// const unsigned int ClapTrap::kDefaultEP     = 10;
+// const unsigned int ClapTrap::kDefaultAttack = 0;
 
-class ClapTrap {
-protected:
-    std::string _name;
-    int         _hitPoints;
-    int         _energyPoints;
-    int         _attackDamage;
+ClapTrap::ClapTrap()
+: _name("No-name brand"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+    std::cout << "ClapTrap assembled at the factory (default build).\n";
+}
 
-public:
-    ClapTrap();
-    explicit ClapTrap(const std::string& name);
-    ClapTrap(const ClapTrap& other);
-    ClapTrap& operator=(const ClapTrap& other);
-    virtual ~ClapTrap();
+ClapTrap::ClapTrap(const std::string& name)
+: _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+    std::cout << "Unit " << GREEN << _name << RESET << " booted up with shiny new personality module!\n";
+}
 
-    virtual void attack(const std::string& target);
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
-};
+ClapTrap::ClapTrap(const ClapTrap& src)
+: _name(src._name), _hitPoints(src._hitPoints), _energyPoints(src._energyPoints), _attackDamage(src._attackDamage){
+    std::cout << BLUE << _name << RESET << " cloned successfully. Double the trouble!\n";
+}
 
-#endif // CLAPTRAP_HPP
+ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
+    if (this != &src) {
+        std::cout << YELLOW << _name << RESET << " received a memory transplant from another ClapTrap.\n";
+        this->_name = src._name;
+        this->_hitPoints = src._hitPoints;
+        this->_energyPoints = src._energyPoints;
+        this->_attackDamage = src._attackDamage;
+    }
+    return *this;
+}
+
+ClapTrap::~ClapTrap() {
+    std::cout << RED << _name << RESET <<" scrapped for spare parts. Farewell!\n";;
+}
+
+const std::string& ClapTrap::getName() const { return _name; }
+unsigned int ClapTrap::getHitPoints() const { return _hitPoints; }
+unsigned int ClapTrap::getEnergyPoints() const { return _energyPoints; }
+unsigned int ClapTrap::getAttackDamage() const { return _attackDamage; }
+
+void ClapTrap::setAttackDamage(unsigned int dmg) { _attackDamage = dmg; }
+void ClapTrap::setName(const std::string& name) { _name = name; }
+
+void ClapTrap::attack(const std::string& target) {
+    if (_hitPoints <= 0) {
+        std::cout << "ClapTrap " << _name << " can't attack (no HP)\n";
+        return;
+    }
+    if (_energyPoints <= 0) {
+        std::cout << "ClapTrap " << _name << " can't attack (no energy)\n";
+        return;
+    }
+    if (_attackDamage == 0) {
+        std::cout << "ClapTrap " << _name << " tries to attack " << target
+                  << " but deals no damage!\n";
+        --_energyPoints;
+        return;
+    }
+    --_energyPoints;
+    std::cout << "ClapTrap " << _name << " attacks " << target
+              << ", causing " << _attackDamage << " points of damage!\n";
+}
+
+void ClapTrap::takeDamage(unsigned int amount) {
+    if (_hitPoints == 0) {
+        std::cout << "ClapTrap " << _name << " is already out (no HP)\n";
+        return;
+    }
+    unsigned int before = _hitPoints;
+    _hitPoints = (amount >= _hitPoints) ? 0u : (_hitPoints - amount);
+    std::cout << "ClapTrap " << _name << " takes " << amount
+              << " damage (HP " << before << " -> " << _hitPoints << ")\n";
+}
+
+void ClapTrap::beRepaired(unsigned int amount) {
+    if (amount > 100) { 
+        std::cerr << "Error: Invalid repair amount: " << amount << "\n";
+        return;
+    }
+    if (_hitPoints <= 0) {
+        std::cout << "ClapTrap " << _name << " can't repair (no HP)\n";
+        return;
+    }
+    if (_energyPoints <= 0) {
+        std::cout << "ClapTrap " << _name << " can't repair (no energy)\n";
+        return;
+    }
+    --_energyPoints;
+    _hitPoints += (int)(amount);
+    if (_hitPoints > 10)
+        _hitPoints = 10;    
+    std::cout << "ClapTrap " << _name << " repairs for " << amount
+              << " (HP=" << _hitPoints << ", EP=" << _energyPoints << ")\n";
+}
+
+void ClapTrap::printStatus() const {
+    std::cout << "[STATUS] " 
+              << "Name=" << _name 
+              << " | HP=" << _hitPoints 
+              << " | EP=" << _energyPoints 
+              << " | DMG=" << _attackDamage 
+              << "\n";
+}
+
+// // --- helpers ---
+
+// unsigned int ClapTrap::saturatingAdd(unsigned int a, unsigned int b) {
+//     const unsigned int max = std::numeric_limits<unsigned int>::max();
+//     if (a > max - b) return max;
+//     return a + b;
+// }
+
+// unsigned int ClapTrap::saturatingSub(unsigned int a, unsigned int b) {
+//     return (b >= a) ? 0u : (a - b);
+// }
