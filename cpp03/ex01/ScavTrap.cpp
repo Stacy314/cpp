@@ -10,15 +10,15 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
     std::cout << "[ScavTrap] " << GREEN << _name << RESET << " stomps into existence, ready to guard some gates!\n";
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
+ScavTrap::ScavTrap(const ScavTrap& src) : ClapTrap(src) {
     std::cout << "[ScavTrap] " << BLUE << _name << RESET << " duplicated — two gates guarded for the price of one!\n";
 }
 
-ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
-    if (this != &other) {
-        ClapTrap::operator=(other);
+ScavTrap& ScavTrap::operator=(const ScavTrap& src) {
+    if (this != &src) {
+        ClapTrap::operator=(src);
     }
-    std::cout << "[ScavTrap] " << YELLOW << _name << RESET << " just received a fresh software upload from another ScavTrap.\n";
+    std::cout << "[ScavTrap] " << YELLOW << _name << RESET << " just received a fresh software upload from ansrc ScavTrap.\n";
 
     return *this;
 }

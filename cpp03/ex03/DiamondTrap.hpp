@@ -10,12 +10,12 @@ private:
 public:
     DiamondTrap();
     explicit DiamondTrap(const std::string& name);
-    DiamondTrap(const DiamondTrap& other);
-    DiamondTrap& operator=(const DiamondTrap& other);
+    DiamondTrap(const DiamondTrap& src);
+    DiamondTrap& operator=(const DiamondTrap& src);
     ~DiamondTrap();
 
     using ScavTrap::attack; // choose ScavTrap's attack per subject
     void whoAmI();
 };
 
-#endif // DIAMONDTRAP_HPP
+#endif

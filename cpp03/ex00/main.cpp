@@ -20,9 +20,17 @@ int main() {
     ClapTrap a("CL4P-TP");
     ClapTrap b("TR4P-CL");
 
+	std::cout << "\n🤖 Show chaining (copy/assign) 🤖\n";
+    ClapTrap a2(a);
+    a2 = a;
+    a2.setName("CL4P-TPv2");
+    a.printStatus();
+    a2.printStatus();
+	b.printStatus();
+
     const unsigned int kMaxRounds = 10;
     unsigned int round = 0;
-
+	std::cout << "\n🔫 Duel started 🔫\n";
     while (a.getHitPoints() > 0 && b.getHitPoints() > 0 && round < kMaxRounds) {
         std::cout << "\n=== Round " << (round + 1) << " ===\n";
         if (a.getEnergyPoints() > 0 && a.getHitPoints() > 0) {

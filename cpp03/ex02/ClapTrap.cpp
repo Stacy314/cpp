@@ -17,7 +17,7 @@ ClapTrap::ClapTrap(const ClapTrap& src)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
     if (this != &src) {
-        std::cout << "[ClapTrap] " << YELLOW << _name << RESET << " received a memory transplant from another ClapTrap.\n";
+        std::cout << "[ClapTrap] " << YELLOW << _name << RESET << " received a memory transplant from ansrc ClapTrap.\n";
         this->_name = src._name;
         this->_hitPoints = src._hitPoints;
         this->_energyPoints = src._energyPoints;
@@ -84,8 +84,8 @@ void ClapTrap::beRepaired(unsigned int amount) {
     }
     --_energyPoints;
     _hitPoints += (int)(amount);
-    if (_hitPoints > 10)
-        _hitPoints = 10;    
+    if (_hitPoints > 100)
+        _hitPoints = 100;    
     std::cout << "[ClapTrap] " << _name << " repairs for " << amount
               << " (HP=" << _hitPoints << ", EP=" << _energyPoints << ")\n";
 }

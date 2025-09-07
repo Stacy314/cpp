@@ -11,16 +11,16 @@ FragTrap::FragTrap(const std::string& name) : ClapTrap(name) {
 
 }
 
-FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other) {
+FragTrap::FragTrap(const FragTrap& src) : ClapTrap(src) {
     std::cout << "[FragTrap] " << BLUE << _name << RESET << " has been cloned — double the firepower, double the chaos!\n";
 
 }
 
-FragTrap& FragTrap::operator=(const FragTrap& other) {
-    if (this != &other) {
-        ClapTrap::operator=(other);
+FragTrap& FragTrap::operator=(const FragTrap& src) {
+    if (this != &src) {
+        ClapTrap::operator=(src);
     }
-    std::cout << "[FragTrap] " << YELLOW << _name << RESET << " just synced battle data with another FragTrap. Ready for more carnage!\n";
+    std::cout << "[FragTrap] " << YELLOW << _name << RESET << " just synced battle data with ansrc FragTrap. Ready for more carnage!\n";
 
     return *this;
 }

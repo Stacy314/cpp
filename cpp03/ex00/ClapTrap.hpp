@@ -19,10 +19,6 @@ public:
     ClapTrap &operator=(const ClapTrap &src);
     ~ClapTrap();
 
-    // static const unsigned int kDefaultHP;
-    // static const unsigned int kDefaultEP;
-    // static const unsigned int kDefaultAttack;
-
     const std::string& getName() const;
     unsigned int getHitPoints() const;
     unsigned int getEnergyPoints() const;
@@ -36,11 +32,6 @@ public:
     void beRepaired(unsigned int amount);
 
     void printStatus() const;
-
-        //     // допоміжні утиліти
-    // static unsigned int saturatingAdd(unsigned int a, unsigned int b);
-    // static unsigned int saturatingSub(unsigned int a, unsigned int b);
-
 
 private:
     std::string _name;

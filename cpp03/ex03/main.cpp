@@ -9,6 +9,6 @@ int main() {
 
     DiamondTrap e(d);
     e.whoAmI();
-    e.attack("another cube");
+    e.attack("ansrc cube");
     return 0;
 }

@@ -19,16 +19,16 @@ DiamondTrap::DiamondTrap(const std::string& name)
               << ", ClapTrap name=" << ClapTrap::_name << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap& other)
-: ClapTrap(other), ScavTrap(other), FragTrap(other), _name(other._name) {
+DiamondTrap::DiamondTrap(const DiamondTrap& src)
+: ClapTrap(src), ScavTrap(src), FragTrap(src), _name(src._name) {
     std::cout << "[DiamondTrap] Copy ctor: name=" << _name << std::endl;
 }
 
-DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
-    if (this != &other) {
-        ScavTrap::operator=(other);
-        FragTrap::operator=(other);
-        _name = other._name;
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& src) {
+    if (this != &src) {
+        ScavTrap::operator=(src);
+        FragTrap::operator=(src);
+        _name = src._name;
     }
     std::cout << "[DiamondTrap] Copy assign: name=" << _name << std::endl;
     return *this;

@@ -17,7 +17,7 @@ ClapTrap::ClapTrap(const ClapTrap& src)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
     if (this != &src) {
-        std::cout << "[ClapTrap] " << YELLOW << _name << RESET << " received a memory transplant from another ClapTrap.\n";
+        std::cout << "[ClapTrap] " << YELLOW << _name << RESET << " received a memory transplant from ansrc ClapTrap.\n";
         this->_name = src._name;
         this->_hitPoints = src._hitPoints;
         this->_energyPoints = src._energyPoints;

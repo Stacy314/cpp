@@ -1,25 +1,43 @@
-#pragma once
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
 
 #include <iostream>
 #include <string>
 
-class ClapTrap {
-protected: // allow derived classes to access per subject note
-    std::string _name;
-    int         _hitPoints;
-    int         _energyPoints;
-    int         _attackDamage;
+#define RED     "\033[1;31m"
+#define GREEN   "\033[1;32m"
+#define YELLOW  "\033[1;33m"
+#define BLUE    "\033[1;34m"
+#define RESET   "\033[0m"
 
+class ClapTrap
+{
 public:
-    // Orthodox Canonical Form
     ClapTrap();
-    explicit ClapTrap(const std::string& name);
-    ClapTrap(const ClapTrap& other);
-    ClapTrap& operator=(const ClapTrap& other);
-    ~ClapTrap();
+    explicit ClapTrap(const std::string &name);
+    ClapTrap(const ClapTrap &src);
+    ClapTrap &operator=(const ClapTrap &src);
+    virtual ~ClapTrap();
 
-    // Actions
-    void attack(const std::string& target);
+    const std::string& getName() const;
+    unsigned int getHitPoints() const;
+    unsigned int getEnergyPoints() const;
+    unsigned int getAttackDamage() const;
+
+    void setAttackDamage(unsigned int dmg);
+    void setName(const std::string& name);
+
+    void attack(const std::string &target);
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
+
+    void printStatus() const;
+
+protected:
+    std::string _name;
+    unsigned int _hitPoints;
+    unsigned int _energyPoints;
+    unsigned int _attackDamage;
 };
+
+#endif

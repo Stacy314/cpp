@@ -3,16 +3,16 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : virtual public ClapTrap { // virtual to avoid double ClapTrap in ex03
+class ScavTrap : virtual public ClapTrap {
 public:
     ScavTrap();
     explicit ScavTrap(const std::string& name);
-    ScavTrap(const ScavTrap& other);
-    ScavTrap& operator=(const ScavTrap& other);
-    ~ScavTrap();
+    ScavTrap(const ScavTrap& src);
+    ScavTrap& operator=(const ScavTrap& src);
+    virtual ~ScavTrap();
 
-    void attack(const std::string& target); // different message
+    virtual void attack(const std::string& target);
     void guardGate();
 };
 
-#endif // SCAVTRAP_HPP
+#endif

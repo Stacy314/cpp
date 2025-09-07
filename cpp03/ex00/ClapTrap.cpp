@@ -1,9 +1,5 @@
 #include "ClapTrap.hpp"
 
-// const unsigned int ClapTrap::kDefaultHP     = 10;
-// const unsigned int ClapTrap::kDefaultEP     = 10;
-// const unsigned int ClapTrap::kDefaultAttack = 0;
-
 ClapTrap::ClapTrap()
 : _name("No-name brand"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
     std::cout << "ClapTrap assembled at the factory (default build).\n";
@@ -21,7 +17,7 @@ ClapTrap::ClapTrap(const ClapTrap& src)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
     if (this != &src) {
-        std::cout << YELLOW << _name << RESET << " received a memory transplant from another ClapTrap.\n";
+        std::cout << YELLOW << _name << RESET << " received a memory transplant from ansrc ClapTrap.\n";
         this->_name = src._name;
         this->_hitPoints = src._hitPoints;
         this->_energyPoints = src._energyPoints;
@@ -102,15 +98,3 @@ void ClapTrap::printStatus() const {
               << " | DMG=" << _attackDamage 
               << "\n";
 }
-
-// // --- helpers ---
-
-// unsigned int ClapTrap::saturatingAdd(unsigned int a, unsigned int b) {
-//     const unsigned int max = std::numeric_limits<unsigned int>::max();
-//     if (a > max - b) return max;
-//     return a + b;
-// }
-
-// unsigned int ClapTrap::saturatingSub(unsigned int a, unsigned int b) {
-//     return (b >= a) ? 0u : (a - b);
-// }
