@@ -3,6 +3,8 @@
 #include <ctime>
 #include <iostream>
 
+//more test 
+
 static void turn(ClapTrap& attacker, ClapTrap& defender) {
     if (attacker.getHitPoints() <= 3) {
       unsigned int heal = (unsigned int)((std::rand() % 5) + 1);

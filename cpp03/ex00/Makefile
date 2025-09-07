@@ -1,6 +1,6 @@
 NAME	= clapTrap.out
 CXX		= c++
-CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -MMD -MP
+CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -MMD -MP -pedantic
 SRC		= main.cpp ClapTrap.cpp
 OBJ		= $(SRC:.cpp=.o)
 DEP		= $(SRC:.cpp=.d)
@@ -22,6 +22,8 @@ $(NAME): $(OBJ)
 
 %.o: %.cpp
 	$(SILENT)$(CXX) $(CXXFLAGS) -c $< -o $@
+debug:
+	$(SILENT)$(MAKE) CXXFLAGS="$(CXXFLAGS) -g" re
 
 clean:
 	$(SILENT)$(RM) $(OBJ) $(DEP)
