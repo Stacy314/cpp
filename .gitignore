@@ -1,6 +1,6 @@
 *.o
 *.d
 *.out
-.txt*
-.replace*
-
+*.txt
+*.replace
+.vscode
