@@ -48,14 +48,23 @@ int main() {
 
     std::cout << "\n🔫 Duel started 🔫\n";
     const unsigned int kMaxRounds = 50;
-    for (unsigned int r = 0; r < kMaxRounds && a.getHitPoints() > 0 && s.getHitPoints() > 0; ++r) {
+    for (unsigned int r = 0; r < kMaxRounds && a.getHitPoints() > 0 && s.getHitPoints() > 0 
+        && (a.getEnergyPoints() > 0 || b.getEnergyPoints() > 0); ++r) {
         std::cout << "\n=== Round " << (r + 1) << " ===\n";
         if (a.getEnergyPoints() > 0) turn_a(a, s);
         if (s.getEnergyPoints() > 0 && s.getHitPoints() > 0) turn_s(s, a);
         a.printStatus();
         s.printStatus();
     }
-
+    if (a.getHitPoints() == 0 && s.getHitPoints() == 0) {
+        std::cout << "Both ClapTraps are down — it's a draw!\n";
+    } else if (a.getHitPoints() == 0) {
+        std::cout << "🏆 " << s.getName() << " wins! 🏆\n";
+    } else if (s.getHitPoints() == 0) {
+        std::cout << "🏆 " << a.getName() << " wins! 🏆\n";
+    } else {
+        std::cout << "Out of energy — no winner this time.\n";
+    }
     std::cout << "\n⚰️ Destruction order on exit ⚰️\n";
     return 0;
 }

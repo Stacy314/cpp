@@ -32,6 +32,8 @@ public:
     void beRepaired(unsigned int amount);
 
     void printStatus() const;
+    bool IsValidName(const std::string& s);
+    bool isSpaceOnly(const std::string& str);
 
 private:
     std::string _name;
