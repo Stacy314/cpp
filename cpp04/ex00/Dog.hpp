@@ -9,5 +9,7 @@ public:
     Dog& operator=(const Dog&);
     virtual ~Dog();
     virtual void makeSound() const;
+	
 };
+
 #endif

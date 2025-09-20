@@ -5,8 +5,7 @@
 #include <string>
 
 class Animal {
-protected:
-    std::string type;
+
 public:
     Animal();
     Animal(const std::string& t);
@@ -16,6 +15,10 @@ public:
 
     virtual void makeSound() const; // virtual in ex00; becomes pure in ex02
     std::string getType() const;
+
+protected:
+    std::string type;
+
 };
 
 #endif

@@ -18,5 +18,6 @@ int main() {
     const WrongAnimal* w = new WrongCat();
     w->makeSound(); // WrongAnimal sound due to non-virtual
     delete w;
+	
     return 0;
 }
