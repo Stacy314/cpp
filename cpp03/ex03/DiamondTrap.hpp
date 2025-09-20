@@ -5,8 +5,6 @@
 #include "ScavTrap.hpp"
 
 class DiamondTrap : public ScavTrap, public FragTrap {
-private:
-    std::string _name; // must be same variable name as in ClapTrap? then keep _name
 public:
     DiamondTrap();
     explicit DiamondTrap(const std::string& name);
@@ -14,8 +12,12 @@ public:
     DiamondTrap& operator=(const DiamondTrap& src);
     ~DiamondTrap();
 
-    using ScavTrap::attack; // choose ScavTrap's attack per subject
+    using ScavTrap::attack;
     void whoAmI();
+
+private:
+    std::string _name;
+    
 };
 
 #endif
