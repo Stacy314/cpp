@@ -28,22 +28,22 @@ void ClapTrap::printStatus() const {
 /*********************************************ORTHODOX CANONICAL FORM*********************************************/
 ClapTrap::ClapTrap()
 : _name("No-name brand"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-    std::cout << "ClapTrap assembled at the factory (default build).\n";
+    std::cout << "[ClapTrap] assembled at the factory (default build).\n";
 }
 
 ClapTrap::ClapTrap(const std::string& name)
 :  _name(IsValidName(name) ? name : "No-name brand"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-    std::cout << "Unit " << GREEN << _name << RESET << " booted up with shiny new personality module!\n";
+    std::cout << "[ClapTrap] Unit " << GREEN << _name << RESET << " booted up with shiny new personality module!\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& src)
 : _name(src._name), _hitPoints(src._hitPoints), _energyPoints(src._energyPoints), _attackDamage(src._attackDamage){
-    std::cout << BLUE << _name << RESET << " cloned successfully. Double the trouble!\n";
+    std::cout << "[ClapTrap]" << BLUE << _name << RESET << " cloned successfully. Double the trouble!\n";
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
     if (this != &src) {
-        std::cout << YELLOW << _name << RESET << " received a memory transplant from ansrc ClapTrap.\n";
+        std::cout << "[ClapTrap]" << YELLOW << _name << RESET << " received a memory transplant from ansrc ClapTrap.\n";
         this->_name = src._name;
         this->_hitPoints = src._hitPoints;
         this->_energyPoints = src._energyPoints;
@@ -53,7 +53,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
 }
 
 ClapTrap::~ClapTrap() {
-    std::cout << RED << _name << RESET <<" scrapped for spare parts. Farewell!\n";;
+    std::cout << "[ClapTrap]" << RED << _name << RESET <<" scrapped for spare parts. Farewell!\n";;
 }
 /*****************************************************************************************************************/
 
@@ -76,54 +76,54 @@ void ClapTrap::setName(const std::string& name) {
 
 void ClapTrap::attack(const std::string& target) {
     if (target == _name){
-        std::cout << "⚠️ ClapTrap " << _name << " initiates SELF-DESTRUCT sequence!\n";
+        std::cerr << "⚠️ [ClapTrap] " << _name << " initiates SELF-DESTRUCT sequence!\n";
         _hitPoints = 0;
         return;
     }
 
     if (_hitPoints <= 0 || _energyPoints <= 0) 
-        std::cout << "ClapTrap " << _name << " can't attack\n";
+        std::cerr << "[ClapTrap] " << _name << " can't attack\n";
 
     if (_attackDamage == 0) {
-        std::cout << "ClapTrap " << _name << " tries to attack " << target
+        std::cerr << "[ClapTrap] " << _name << " tries to attack " << target
                   << " but deals no damage!\n";
         --_energyPoints;
         return;
     }
 
     --_energyPoints;
-    std::cout << "ClapTrap " << _name << " attacks " << target
+    std::cout << "[ClapTrap] " << _name << " attacks " << target
               << ", causing " << _attackDamage << " points of damage!\n";
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
+    if (amount > 10) { 
+        std::cerr << "Error: Invalid damage amount.\n";
+        return;
+    }
     if (_hitPoints == 0) {
-        std::cout << "ClapTrap " << _name << " is already out (no HP)\n";
+        std::cerr << "[ClapTrap] " << _name << " is already out (no HP)\n";
         return;
     }
     unsigned int before = _hitPoints;
     _hitPoints = (amount >= _hitPoints) ? 0u : (_hitPoints - amount);
-    std::cout << "ClapTrap " << _name << " takes " << amount
+    std::cout << "[ClapTrap] " << _name << " takes " << amount
               << " damage (HP " << before << " -> " << _hitPoints << ")\n";
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-    if (amount > 100) { 
+    if (amount > 10) { 
         std::cerr << "Error: Invalid repair amount.\n";
         return;
     }
-    if (_hitPoints <= 0) {
-        std::cout << "ClapTrap " << _name << " can't repair (no HP)\n";
-        return;
-    }
-    if (_energyPoints <= 0) {
-        std::cout << "ClapTrap " << _name << " can't repair (no energy)\n";
+    if (_hitPoints <= 0 || _energyPoints <= 0) {
+        std::cerr << "[ClapTrap] " << _name << " can't repair\n";
         return;
     }
     --_energyPoints;
     _hitPoints += (int)(amount);
     if (_hitPoints > 10)
         _hitPoints = 10;    
-    std::cout << "ClapTrap " << _name << " repairs for " << amount
+    std::cout << "[ClapTrap] " << _name << " repairs for " << amount
               << " (HP=" << _hitPoints << ", EP=" << _energyPoints << ")\n";
 }

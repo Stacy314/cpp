@@ -12,6 +12,7 @@ public:
     virtual ~FragTrap();
 
     void highFivesGuys(void);
+    virtual void attack(const std::string& target);
 };
 
 #endif

@@ -17,7 +17,7 @@ public:
     explicit ClapTrap(const std::string &name);
     ClapTrap(const ClapTrap &src);
     ClapTrap &operator=(const ClapTrap &src);
-    virtual ~ClapTrap();
+    ~ClapTrap();
 
     const std::string& getName() const;
     unsigned int getHitPoints() const;
@@ -32,6 +32,8 @@ public:
     void beRepaired(unsigned int amount);
 
     void printStatus() const;
+    bool IsValidName(const std::string& s);
+    bool isSpaceOnly(const std::string& str);
 
 protected:
     std::string _name;

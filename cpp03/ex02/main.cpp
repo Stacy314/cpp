@@ -8,7 +8,7 @@
  static void turn_f(FragTrap& attacker, ScavTrap& defender) {
      if (attacker.getHitPoints() == 0 || attacker.getEnergyPoints() == 0)
          return;
-     if (attacker.getHitPoints() <= 70) {
+     if (attacker.getHitPoints() <= 50) {
          unsigned int heal = (unsigned int)((std::rand() % 30) + 1);
          attacker.beRepaired(heal);
      } 
@@ -19,7 +19,7 @@
  static void turn_s(ScavTrap& attacker, FragTrap& defender) {
      if (attacker.getHitPoints() == 0 || attacker.getEnergyPoints() == 0)
          return;
-     if (attacker.getHitPoints() <= 70) {
+     if (attacker.getHitPoints() <= 50) {
          unsigned int heal = (unsigned int)((std::rand() % 30) + 1);
          attacker.beRepaired(heal);
      } 
@@ -29,10 +29,6 @@
 
 int main() {
     std::srand((unsigned int)(std::time(0)));
-
-    std::cout << "🤖 Construct ClapTrap CLAP-9000 🤖\n";
-    ClapTrap a("CLAP-9000");
-    a.printStatus();
 
     std::cout << "\n🤖 Construct ScavTrap  SC4V-TP 🤖\n";
     ScavTrap s("SC4V-TP");

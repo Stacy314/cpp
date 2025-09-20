@@ -1,6 +1,6 @@
 NAME	= clapTrap.out
 CXX		= c++
-CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -MMD -MP
+CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -MMD -MP -pedantic
 SRC		= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJ		= $(SRC:.cpp=.o)
 DEP		= $(SRC:.cpp=.d)
@@ -22,7 +22,16 @@ $(NAME): $(OBJ)
 
 %.o: %.cpp
 	$(SILENT)$(CXX) $(CXXFLAGS) -c $< -o $@
+debug:
+	$(SILENT)$(MAKE) CXXFLAGS="$(CXXFLAGS) -g" re
 
+valgrind: re
+	valgrind --leak-check=full --show-leak-kinds=all \
+	         --track-origins=yes  ./$(NAME)
+
+run: all
+	./$(NAME)
+	
 clean:
 	$(SILENT)$(RM) $(OBJ) $(DEP)
 

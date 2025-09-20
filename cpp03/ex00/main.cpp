@@ -1,7 +1,6 @@
 #include "ClapTrap.hpp"
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
 
 static void turn(ClapTrap& attacker, ClapTrap& defender) {
     attacker.beRepaired(10);
@@ -18,6 +17,7 @@ static void turn(ClapTrap& attacker, ClapTrap& defender) {
 int main() {
     std::srand((unsigned int)(std::time(0)));
 
+    std::cout << "\n🤖 Construct ClapTraps 🤖\n";
     ClapTrap a("CL4P-TP");
     a.printStatus();
     std::cout << "\n";
@@ -73,8 +73,8 @@ int main() {
     e.printStatus();
     std::cout << "\n";
     c.attack(c.getName());
-    c.takeDamage(2147483647);
-    c.beRepaired(2147483647);
+    d.takeDamage(2147483647);
+    d.beRepaired(2147483647);
     c.printStatus();
 
     std::cout << "\n⚰️ Destruction order on exit ⚰️\n";

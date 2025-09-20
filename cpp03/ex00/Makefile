@@ -25,6 +25,13 @@ $(NAME): $(OBJ)
 debug:
 	$(SILENT)$(MAKE) CXXFLAGS="$(CXXFLAGS) -g" re
 
+valgrind: re
+	valgrind --leak-check=full --show-leak-kinds=all \
+	         --track-origins=yes  ./$(NAME)
+
+run: all
+	./$(NAME)
+
 clean:
 	$(SILENT)$(RM) $(OBJ) $(DEP)
 
