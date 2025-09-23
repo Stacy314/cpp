@@ -1,16 +1,15 @@
-NAME	= fixed.out
-CXX		= c++
-CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -MMD -MP
+NAME	= zombie
+CC		= c++
+CFLAGS	= -Wall -Wextra -Werror -g -std=c++98
 SRC		= main.cpp Fixed.cpp
-OBJ		= $(SRC:.cpp=.o)
-DEP		= $(SRC:.cpp=.d)
+OBJ		= $(SRC:%.cpp=%.o)
 RM 		= rm -f
 SILENT 	= @
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(SILENT)$(CXX) $(OBJ) $(CXXFLAGS) -o $@
+	$(SILENT)$(CC) $(OBJ) $(CFLAGS) -o $@
 	@echo "░█████╗░██████╗░██████╗░░█████╗░██████╗░"
 	@echo "██╔══██╗██╔══██╗██╔══██╗██╔══██╗╚════██╗"
 	@echo "██║░░╚═╝██████╔╝██████╔╝██║░░██║░░███╔═╝"
@@ -18,16 +17,14 @@ $(NAME): $(OBJ)
 	@echo "╚█████╔╝██║░░░░░██║░░░░░╚█████╔╝███████╗"
 	@echo "░╚════╝░╚═╝░░░░░╚═╝░░░░░░╚════╝░╚══════╝"
 
--include $(DEP)
-
 %.o: %.cpp
-	$(SILENT)$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(SILENT)$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(SILENT)$(RM) $(OBJ) $(DEP)
+	$(SILENT)$(RM) $(OBJ)
 
-fclean: clean
-	$(SILENT)$(RM) $(NAME)
+fclean:
+	$(SILENT)$(RM) $(OBJ) $(NAME)
 
 re: fclean all
 

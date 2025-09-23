@@ -38,12 +38,12 @@ ClapTrap::ClapTrap(const std::string& name)
 
 ClapTrap::ClapTrap(const ClapTrap& src)
 : _name(src._name), _hitPoints(src._hitPoints), _energyPoints(src._energyPoints), _attackDamage(src._attackDamage){
-    std::cout << "[ClapTrap]" << BLUE << _name << RESET << " cloned successfully. Double the trouble!\n";
+    std::cout << "[ClapTrap] " << BLUE << _name << RESET << " cloned successfully. Double the trouble!\n";
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
     if (this != &src) {
-        std::cout << "[ClapTrap]" << YELLOW << _name << RESET << " received a memory transplant from ansrc ClapTrap.\n";
+        std::cout << "[ClapTrap] " << YELLOW << _name << RESET << " received a memory transplant from ansrc ClapTrap.\n";
         this->_name = src._name;
         this->_hitPoints = src._hitPoints;
         this->_energyPoints = src._energyPoints;
@@ -53,7 +53,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& src) {
 }
 
 ClapTrap::~ClapTrap() {
-    std::cout << "[ClapTrap]" << RED << _name << RESET <<" scrapped for spare parts. Farewell!\n";;
+    std::cout << "[ClapTrap] " << RED << _name << RESET <<" scrapped for spare parts. Farewell!\n";;
 }
 /*****************************************************************************************************************/
 

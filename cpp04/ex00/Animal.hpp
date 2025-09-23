@@ -14,7 +14,7 @@ public:
     virtual ~Animal();
 
     virtual void makeSound() const; // virtual in ex00; becomes pure in ex02
-    std::string getType() const;
+    const std::string getType() const;
 
 protected:
     std::string type;

@@ -1,23 +1,23 @@
 #include "Cat.hpp"
 
 Cat::Cat() : Animal("Cat") {
-	std::cout << "[Cat] ctor" << std::endl;
+	std::cout << "[Cat] Default constructor called\n";
 }
 
 Cat::Cat(const Cat &o) : Animal(o) {
-	std::cout << "[Cat] copy" << std::endl;
+	std::cout << "[Cat] Copy constructor called\n";
 }
 
 Cat &Cat::operator=(const Cat &o) {
 	Animal::operator=(o);
-	std::cout << "[Cat] assign" << std::endl;
+	std::cout << "[Cat] Copy assignment operator called\n";
 	return (*this);
 }
 
 Cat::~Cat() {
-	std::cout << "[Cat] dtor" << std::endl;
+	std::cout << "[Cat] Destructor called\n";
 }
 
 void Cat::makeSound() const {
-	std::cout << "Meow!" << std::endl;
+	std::cout << "[Cat] Meow!\n";
 }

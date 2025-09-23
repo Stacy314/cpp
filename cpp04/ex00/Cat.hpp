@@ -8,8 +8,8 @@ public:
     Cat(const Cat&);
     Cat& operator=(const Cat&);
     virtual ~Cat();
-    virtual void makeSound() const;
 	
+    virtual void makeSound() const;	
 };
 
 #endif

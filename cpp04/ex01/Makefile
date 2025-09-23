@@ -1,4 +1,4 @@
-NAME	= zombie
+NAME	= zoo
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -g -std=c++98
 SRC		= main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
