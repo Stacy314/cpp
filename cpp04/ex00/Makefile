@@ -32,7 +32,7 @@ valgrind: re
 run: all
 	./$(NAME)
 
-symbols: $(NAME)
+vtable: $(NAME)
 	@echo "🔎 Dumping vtables from $(NAME):"
 	@nm -C $(NAME) | grep vtable || echo "No vtables found!"
 

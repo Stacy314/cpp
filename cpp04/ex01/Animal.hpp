@@ -5,8 +5,6 @@
 #include <string>
 
 class Animal {
-protected:
-    std::string type;
 public:
     Animal();
     Animal(const std::string& t);
@@ -14,8 +12,12 @@ public:
     Animal& operator=(const Animal&);
     virtual ~Animal();
 
-    virtual void makeSound() const; // virtual in ex00; becomes pure in ex02
-    std::string getType() const;
+    virtual void makeSound() const;
+    const std::string getType() const;
+
+protected:
+    std::string type;
+
 };
 
 #endif
