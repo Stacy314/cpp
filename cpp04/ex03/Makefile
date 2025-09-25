@@ -1,15 +1,16 @@
-NAME	= zoo
-CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -g -std=c++98
+NAME	= bioExperiment.out
+CXX		= c++
+CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -MMD -MP -pedantic
 SRC		= main.cpp AMateria.cpp Ice.cpp Cure.cpp ICharacter.hpp Character.cpp IMateriaSource.hpp MateriaSource.cpp
-OBJ		= $(SRC:%.cpp=%.o)
+BJ		= $(SRC:.cpp=.o)
+DEP		= $(SRC:.cpp=.d)
 RM 		= rm -f
 SILENT 	= @
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(SILENT)$(CC) $(OBJ) $(CFLAGS) -o $@
+	$(SILENT)$(CXX) $(OBJ) $(CXXFLAGS) -o $@
 	@echo "░█████╗░██████╗░██████╗░░█████╗░░░██╗██╗"
 	@echo "██╔══██╗██╔══██╗██╔══██╗██╔══██╗░██╔╝██║"
 	@echo "██║░░╚═╝██████╔╝██████╔╝██║░░██║██╔╝░██║"
@@ -17,14 +18,31 @@ $(NAME): $(OBJ)
 	@echo "╚█████╔╝██║░░░░░██║░░░░░╚█████╔╝╚════██║"
 	@echo "░╚════╝░╚═╝░░░░░╚═╝░░░░░░╚════╝░░░░░░╚═╝"
 
+-include $(DEP)
+
 %.o: %.cpp
-	$(SILENT)$(CC) $(CFLAGS) -c $< -o $@
+	$(SILENT)$(CXX) $(CXXFLAGS) -c $< -o $@
+debug:
+	$(SILENT)$(MAKE) CXXFLAGS="$(CXXFLAGS) -g" re
+
+valgrind: re
+	valgrind --leak-check=full --show-leak-kinds=all \
+	         --track-origins=yes  ./$(NAME)
+
+run: all
+	./$(NAME)
+
+vtable: $(NAME)
+	@echo "🔎 Dumping vtables from $(NAME):"
+	@nm -C $(NAME) | grep vtable || echo "No vtables found!"
+
+
 
 clean:
-	$(SILENT)$(RM) $(OBJ)
+	$(SILENT)$(RM) $(OBJ) $(DEP)
 
-fclean:
-	$(SILENT)$(RM) $(OBJ) $(NAME)
+fclean: clean
+	$(SILENT)$(RM) $(NAME)
 
 re: fclean all
 
