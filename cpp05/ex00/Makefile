@@ -32,12 +32,6 @@ valgrind: re
 run: all
 	./$(NAME)
 
-vtable: $(NAME)
-	@echo "🔎 Dumping vtables from $(NAME):"
-	@nm -C $(NAME) | grep vtable || echo "No vtables found!"
-
-
-
 clean:
 	$(SILENT)$(RM) $(OBJ) $(DEP)
 
