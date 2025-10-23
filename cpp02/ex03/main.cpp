@@ -6,7 +6,7 @@ static void report(const Point& a, const Point& b, const Point& c, const Point& 
               << "B(" << b.getX() << ", " << b.getY() << ") "
               << "C(" << c.getX() << ", " << c.getY() << ")\n";
     std::cout << "Point P(" << p.getX() << ", " << p.getY() << ") is "
-              << (bsp(a,b,c,p) ? "inside" : "outside") << std::endl;
+              << (bsp(a,b,c,p) ? "inside" : "outside") << "\n";
 }
 
 int main() {

@@ -10,7 +10,7 @@
 void print_vptr(const char* name, const Animal* p) {
     void* vtable = 0;
     std::memcpy(&vtable, (const void*)(p), sizeof(void*));
-    std::cout << name << " vtable @ " << vtable << std::endl;
+    std::cout << name << " vtable @ " << vtable << "\n";
 }
 
 template <typename T>
@@ -45,8 +45,8 @@ print_vptr("k(Animal*)   ", k);
 k->makeSound();
 
 std::cout << "\n🔬 Identified specimen type 🔬\n";
-std::cout << j->getType() << " " << std::endl;
-std::cout << i->getType() << " " << std::endl;
+std::cout << j->getType() << " " << "\n";
+std::cout << i->getType() << " " << "\n";
 
 std::cout << "\n🧬 Animals are making noises 🧬\n";
 i->makeSound();
