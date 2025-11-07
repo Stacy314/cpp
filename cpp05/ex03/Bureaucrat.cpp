@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 // ==== Exceptions ====
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
@@ -53,6 +54,19 @@ if (_grade >= 150) throw GradeTooLowException();
 ++_grade;
 }
 
+void Bureaucrat::signForm(AForm& f) const {
+try {
+f.beSigned(*this);
+std::cout << _name << " signed " << f.getName() << std::endl;
+} catch (std::exception& e) {
+std::cout << _name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
+}
+}
+
+void Bureaucrat::executeForm(AForm const& f) const {
+try { f.execute(*this); std::cout << _name << " executed " << f.getName() << std::endl; }
+catch (std::exception& e) { std::cout << _name << " couldn't execute " << f.getName() << " because " << e.what() << std::endl; }
+}
 
 // ==== Stream ====
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b) {
