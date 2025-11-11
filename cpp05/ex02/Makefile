@@ -34,7 +34,7 @@ run: all
 	./$(NAME)
 
 clean:
-	$(SILENT)$(RM) $(OBJ) $(DEP)
+	$(SILENT)$(RM) $(OBJ) $(DEP) *_shrubbery
 
 fclean: clean
 	$(SILENT)$(RM) $(NAME)

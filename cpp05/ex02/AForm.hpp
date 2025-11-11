@@ -9,9 +9,18 @@ class Bureaucrat;
 
 class AForm {
 public:
-    class GradeTooHighException : public std::exception { public: const char* what() const throw(); };
-    class GradeTooLowException : public std::exception { public: const char* what() const throw(); };
-    class NotSignedException : public std::exception { public: const char* what() const throw(); };
+    class GradeTooHighException : public std::exception {
+    public: 
+        const char* what() const throw();
+    };
+    class GradeTooLowException : public std::exception {
+    public: 
+        const char* what() const throw();
+    };
+    class NotSignedException : public std::exception {
+    public: 
+        const char* what() const throw();
+    };
 
     AForm(const std::string& name, int gS, int gE);
     AForm(const AForm&);
@@ -28,7 +37,7 @@ public:
     virtual void execute(Bureaucrat const& executor) const = 0;
 
 protected:
-    void requireExecutable(Bureaucrat const& executor) const; // common checks
+    void requireExecutable(Bureaucrat const& executor) const;
 
 private:
     const std::string _name;
@@ -38,6 +47,5 @@ private:
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& f);
-
 
 #endif

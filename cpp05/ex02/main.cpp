@@ -8,23 +8,30 @@
 
 
 int main() {
-std::srand(static_cast<unsigned int>(std::time(0)));
+    std::srand((unsigned int)(std::time(0)));
+    
+    Bureaucrat exec("Exec", 1);
+    Bureaucrat mid ("Mid", 50);
+   
+    ShrubberyCreationForm sh("home");
+    RobotomyRequestForm rb("Major Motoko Kusanagi");
+    PresidentialPardonForm pp("Arthur Dent");
 
+    exec.signForm(sh);
+    exec.executeForm(sh);
+    std::cout << '\n';
 
-Bureaucrat exec("Exec", 1);
-Bureaucrat mid ("Mid", 50);
+    mid.signForm(rb);
+    mid.executeForm(rb);
+    std::cout << '\n';
 
+    exec.signForm(rb);
+    exec.executeForm(rb);
+    std::cout << '\n';
 
-ShrubberyCreationForm sh("home");
-RobotomyRequestForm rb("Bender");
-PresidentialPardonForm pp("Arthur");
+    exec.signForm(pp);
+    exec.executeForm(pp);
+    std::cout << '\n';
 
-
-exec.signForm(sh); exec.executeForm(sh);
-mid.signForm(rb); mid.executeForm(rb); // sign OK, exec too low
-exec.signForm(rb); exec.executeForm(rb); // exec OK
-exec.signForm(pp); exec.executeForm(pp); // needs grade 5 exec
-
-
-return 0;
+    return 0;
 }
