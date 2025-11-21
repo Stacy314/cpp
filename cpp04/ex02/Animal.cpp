@@ -23,10 +23,6 @@ Animal::~Animal() {
 	std::cout << "[Animal] Destructor called\n";
 }
 
-void Animal::makeSound() const {
-	std::cout << "[Animal] ...\n";
-}
-
 const std::string Animal::getType() const {
 	return (type);
 }
