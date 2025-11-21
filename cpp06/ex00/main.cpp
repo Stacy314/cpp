@@ -1,17 +1,25 @@
 #include "ScalarConverter.hpp"
 
+ int main(int argc, char** argv) {
+     if (argc != 2) {
+         std::cerr << "Usage: ./convert <literal>\n"; 
+         return 1;
+     }
+     ScalarConverter::convert(argv[1]);
 
+     return 0;
+ }
 
-static void printTest(const std::string &literal)
-{
-    std::cout << "==== \"" << literal << "\" ====\n";
-    ScalarConverter::convert(literal);
-    std::cout << "-----------------------------\n";
-}
+//static void printTest(const std::string &literal)
+//{
+//    std::cout << "==== \"" << literal << "\" ====\n";
+//    ScalarConverter::convert(literal);
+//    std::cout << "-----------------------------\n";
+//}
 
-int main()
-{
-    const std::string tests[] = {
+//int main()
+//{
+//    const std::string tests[] = {
         // 1. Empty string
         // "",
 
@@ -42,20 +50,19 @@ int main()
         // "42.0f",
         // "1.8e308",
         
-
         // // 6. Double
         // "0.0",
         // "4.2",
         // "-4.2",
         // "42.0",
 
-        // 7. Pseudo-literals
-        "nan",
-        "nanf",
-        "+inf",
-        "-inf",
-        "+inff",
-        "-inff",
+        //// 7. Pseudo-literals
+        //"nan",
+        //"nanf",
+        //"+inf",
+        //"-inf",
+        //"+inff",
+        //"-inff",
 
         // "abc",
         // "4.2ff",
@@ -69,27 +76,12 @@ int main()
         // "+",
         // "-",
         // " "
-    };
+//    };
 
-    const int count = sizeof(tests) / sizeof(tests[0]);
+//    const int count = sizeof(tests) / sizeof(tests[0]);
 
-    for (int i = 0; i < count; ++i)
-        printTest(tests[i]);
+//    for (int i = 0; i < count; ++i)
+//        printTest(tests[i]);
 
-    return 0;
-}
-
-
-// int main(int argc, char** argv) {
-//     if (argc != 2) {
-//         std::cerr << "Usage: ./convert <literal>\n"; 
-//         return 1;
-//     }
-//     ScalarConverter::convert(argv[1]);
-
-//     //forbidden
-//     // ScalarConverter a;  
-//     // ScalarConverter *b = new ScalarConverter(); 
-//     // ScalarConverter c2 = a;
-//     return 0;
-// }
+//    return 0;
+//}

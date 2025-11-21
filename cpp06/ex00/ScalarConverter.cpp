@@ -33,32 +33,23 @@ static void printPseudo(std::string const &s){
 
 static void printFromChar(char c)
 {
-    // char
     std::cout << "char: '" << c << "'\n";
 
-    // int
     int i = static_cast<int>(c);
     std::cout << "int: " << i << "\n";
 
-    // float
     float f = static_cast<float>(c);
     std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f\n";
 
-    // double
     double d = static_cast<double>(c);
     std::cout << "double: " << std::fixed << std::setprecision(1) << d << "\n";
 }
 
 static void printFromDouble(double d)
 {
-    // char
-    if (d != d || d > std::numeric_limits<char>::max()
-        || d < std::numeric_limits<char>::min())
-    {
+    if (d != d || d > std::numeric_limits<char>::max() || d < std::numeric_limits<char>::min()) {
         std::cout << "char: impossible\n";
-    }
-    else
-    {
+    } else {
         char c = static_cast<char>(d);
         if (std::isprint(static_cast<unsigned char>(c)))
             std::cout << "char: '" << c << "'\n";
@@ -66,23 +57,16 @@ static void printFromDouble(double d)
             std::cout << "char: Non displayable\n";
     }
 
-    // int
-    if (d != d || d > std::numeric_limits<int>::max()
-        || d < std::numeric_limits<int>::min())
-    {
+    if (d != d || d > std::numeric_limits<int>::max() || d < std::numeric_limits<int>::min()) {
         std::cout << "int: impossible\n";
-    }
-    else
-    {
+    } else {
         int i = static_cast<int>(d);
         std::cout << "int: " << i << "\n";
     }
 
-    // float
     float f = static_cast<float>(d);
     std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f\n";
 
-    // double
     std::cout << "double: " << std::fixed << std::setprecision(1) << d << "\n";
 }
 
@@ -96,12 +80,12 @@ void ScalarConverter::convert(std::string const &literal)
         return;
     }
 
-    if (isPseudoLiteral(literal)){
+    if (isPseudoLiteral(literal)) {
         printPseudo(literal);
         return;
     }
 
-    if (isCharLiteral(literal))    {
+    if (isCharLiteral(literal)) {
         char c = literal[0];
         printFromChar(c);
         return;
@@ -118,19 +102,19 @@ void ScalarConverter::convert(std::string const &literal)
 
     if ((end == literal.c_str()) || (end && *end != '\0' && !hasF)){
         // invalid literal
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: impossible" << std::endl;
-        std::cout << "double: impossible" << std::endl;
+        std::cout << "char: impossible\n";
+        std::cout << "int: impossible\n";
+        std::cout << "float: impossible\n";
+        std::cout << "double: impossible\n";
         return;
     }
 
     if (errno == ERANGE){
         // overflow / underflow in parsing
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: impossible" << std::endl;
-        std::cout << "double: impossible" << std::endl;
+        std::cout << "char: impossible\n";
+        std::cout << "int: impossible\n";
+        std::cout << "float: impossible\n";
+        std::cout << "double: impossible\n";
         return;
     }
 

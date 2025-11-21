@@ -1,13 +1,8 @@
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
 #include "Intern.hpp"
 #include "Bureaucrat.hpp"
 
 
 int main() {
-    std::srand((unsigned int)(std::time(0)));
-
     Intern someRandomIntern;
     AForm* rrf = someRandomIntern.makeForm("robotomy request", "Bender");
     AForm* shrub = someRandomIntern.makeForm("shrubbery creation", "home");
@@ -33,7 +28,6 @@ int main() {
         boss.signForm(*pardon);
         boss.executeForm(*pardon);
     }
-    std::cout << '\n';
 
     delete rrf;
     delete shrub;

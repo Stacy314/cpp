@@ -1,7 +1,6 @@
 #ifndef INTERN_HPP
 #define INTERN_HPP
 
-#include <string>
 #include "AForm.hpp"
 
 class Intern {

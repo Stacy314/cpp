@@ -1,5 +1,4 @@
 #include "Intern.hpp"
-#include <iostream>
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
@@ -27,16 +26,15 @@ static AForm* makePardon(const std::string& t) {
     return new PresidentialPardonForm(t);
 }
 
-
 AForm* Intern::makeForm(const std::string& name, const std::string& target) const {
     const std::string keys[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
     AForm* (*ctors[3])(const std::string&) = { &makeShrub, &makeRobo, &makePardon };
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 4; ++i) {
         if (name == keys[i]) {
             std::cout << "Intern creates " << name << "\n";
             return ctors[i](target);
         }
     }
-    std::cout << "Intern: unknown form name '" << name << "'\n";
+    std::cerr << "Intern: unknown form name '" << name << "'\n";
     return 0;
 }

@@ -21,10 +21,11 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 
 void RobotomyRequestForm::execute(Bureaucrat const& executor) const {
     requireExecutable(executor);
+	std::srand((unsigned int)(std::time(0)));
     std::cout << "* Drilling noises *\n";
     int r = std::rand() % 2;
     if (r)
         std::cout << _target << " has been robotomized successfully.\n";
     else
-        std::cout << "Robotomy failed on " << _target << ".\n";
+        std::cerr << "Robotomy failed on " << _target << ".\n";
 }

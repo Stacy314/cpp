@@ -29,8 +29,8 @@ void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
     ofs << "      \\\\//  /douUP\n";
     ofs << "        \\\\////\n";
     ofs << "         |||/\\\n";
-    ofs << "         |||\\\\/\n";
+    ofs << "         |||\\/\n";
     ofs << "         |||||\n";
     ofs << "   .....//||||\\\\....\n";
     ofs.close();
-    }
+}
