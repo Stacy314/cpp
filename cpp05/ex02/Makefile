@@ -1,7 +1,7 @@
 NAME     =  bureaucrat.out
 CXX		 = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP -pedantic
-SRC		 = main.cpp  Bureaucrat.cpp
+SRC		 = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJ		 = $(SRC:.cpp=.o)
 DEP		 = $(SRC:.cpp=.d)
 RM 		 = rm -f
@@ -34,7 +34,7 @@ run: all
 	./$(NAME)
 
 clean:
-	$(SILENT)$(RM) $(OBJ) $(DEP)
+	$(SILENT)$(RM) $(OBJ) $(DEP) *_shrubbery
 
 fclean: clean
 	$(SILENT)$(RM) $(NAME)

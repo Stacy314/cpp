@@ -1,7 +1,7 @@
 NAME     =  bureaucrat.out
 CXX		 = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP -pedantic
-SRC		 = main.cpp  Bureaucrat.cpp
+SRC		 = main.cpp  Bureaucrat.cpp Form.cpp
 OBJ		 = $(SRC:.cpp=.o)
 DEP		 = $(SRC:.cpp=.d)
 RM 		 = rm -f
