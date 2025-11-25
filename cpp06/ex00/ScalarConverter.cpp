@@ -10,27 +10,6 @@ static bool isCharLiteral(std::string const &s) {
     return (s.length() == 1 && !std::isdigit(s[0]));
 }
 
-static bool isPseudoLiteral(std::string const &s) {
-    return (s == "nan" || s == "+inf" || s == "-inf" || s == "nanf" || s == "+inff" || s == "-inff");
-}
-
-static void printPseudo(std::string const &s){
-    std::string floatStr;
-    std::string doubleStr;
-
-    if (s[s.length() - 1] == 'f'){
-        floatStr = s;
-        doubleStr = s.substr(0, s.length() - 1);
-    }else{
-        floatStr = s + "f";
-        doubleStr = s;
-    }
-    std::cout << "char: impossible\n";
-    std::cout << "int: impossible\n";
-    std::cout << "float: " << floatStr << "\n";
-    std::cout << "double: " << doubleStr << "\n";
-}
-
 static void printFromChar(char c)
 {
     std::cout << "char: '" << c << "'\n";
@@ -72,27 +51,12 @@ static void printFromDouble(double d)
 
 void ScalarConverter::convert(std::string const &literal)
 {
-    if (literal.empty()){
-        std::cout << "char: impossible\n";
-        std::cout << "int: impossible\n";
-        std::cout << "float: impossible\n";
-        std::cout << "double: impossible\n";
-        return;
-    }
-
-    if (isPseudoLiteral(literal)) {
-        printPseudo(literal);
-        return;
-    }
-
     if (isCharLiteral(literal)) {
         char c = literal[0];
         printFromChar(c);
         return;
     }
-
-    // numeric literal (int / float / double)
-    errno = 0;
+    //errno = 0;
     char *end = 0;
     double d = std::strtod(literal.c_str(), &end);
 
@@ -101,7 +65,7 @@ void ScalarConverter::convert(std::string const &literal)
         hasF = true;
 
     if ((end == literal.c_str()) || (end && *end != '\0' && !hasF)){
-        // invalid literal
+
         std::cout << "char: impossible\n";
         std::cout << "int: impossible\n";
         std::cout << "float: impossible\n";
@@ -109,14 +73,15 @@ void ScalarConverter::convert(std::string const &literal)
         return;
     }
 
-    if (errno == ERANGE){
-        // overflow / underflow in parsing
-        std::cout << "char: impossible\n";
-        std::cout << "int: impossible\n";
-        std::cout << "float: impossible\n";
-        std::cout << "double: impossible\n";
-        return;
-    }
+    //if (errno == ERANGE){
+	//	std::cout << ERANGE;
+    //    // overflow / underflow in parsing
+    //    std::cout << "char: impossible\n";
+    //    std::cout << "int: impossible\n";
+    //    std::cout << "float: impossible\n";
+    //    std::cout << "double: impossible\n";
+    //    return;
+    //}
 
     printFromDouble(d);
 }
