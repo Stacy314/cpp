@@ -11,6 +11,7 @@ int main() {
     std::cout << "Data.text: " << data.text << "\n";
 
     uintptr_t raw = Serializer::serialize(&data);
+
     std::cout << "Serialized uintptr_t: " << raw << "\n";
 
     Data *restored = Serializer::deserialize(raw);
@@ -20,9 +21,9 @@ int main() {
     std::cout << "Restored Data.text: " << restored->text << "\n";
 
     if (restored == &data)
-        std::cout << "Pointers are equal: serialization works.\n";
+        std::cout << "✅ Pointers are equal. ✅\n";
     else
-        std::cout << "Pointers differ: something is wrong.\n";
+        std::cout << "❌ Pointers are different. ❌\n";
 
     return 0;
 }

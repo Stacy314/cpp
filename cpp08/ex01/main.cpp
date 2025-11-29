@@ -3,8 +3,7 @@
 #include <vector>
 #include <cstdlib>
 
-int main()
-{
+int main(){
     {
         std::cout << "=== Subject test ===" << std::endl;
         Span sp = Span(5);

@@ -1,4 +1,4 @@
-NAME     = convert.out
+NAME     = serializer.out
 CXX		 = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP -pedantic
 SRC		 = main.cpp  Serializer.cpp

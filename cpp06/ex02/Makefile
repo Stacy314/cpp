@@ -1,4 +1,4 @@
-NAME     = convert.out
+NAME     = identifier.out
 CXX		 = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP -pedantic
 SRC		 = main.cpp  Base.cpp

@@ -7,8 +7,7 @@ int main()
 {
     std::srand(static_cast<unsigned int>(std::time(0)));
 
-    for (int i = 0; i < 5; ++i)
-    {
+    for (int i = 0; i < 5; ++i){
         Base *ptr = generate();
 
         std::cout << "identify(Base*): ";
@@ -18,7 +17,7 @@ int main()
         identify(*ptr);
 
         delete ptr;
-        std::cout << "----" << std::endl;
+        std::cout << "----\n";
     }
     return 0;
 }
