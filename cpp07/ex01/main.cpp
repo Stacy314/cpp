@@ -1,21 +1,21 @@
 #include "iter.hpp"
 
 template <typename T>
-void printElement(T const &x){
+void printElement(T const &x) {
     std::cout << x << " ";
 }
 
 template <typename T>
-void increment(T &x){
+void increment(T &x) {
     ++x;
 }
 
-void toUpperChar(char &c){
+void toUpperChar(char &c) {
     if (c >= 'a' && c <= 'z')
         c = static_cast<char>(c - 'a' + 'A');
 }
 
-int main(){
+int main() {
     // int array
     int arr[] = {1, 2, 3, 4, 5};
     std::size_t len = sizeof(arr) / sizeof(arr[0]);

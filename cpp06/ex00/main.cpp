@@ -1,24 +1,21 @@
 #include "ScalarConverter.hpp"
 
- int main(int argc, char** argv) {
-     if (argc != 2) {
-         std::cerr << "Usage: ./convert <literal>\n"; 
-         return 1;
-     }
-     ScalarConverter::convert(argv[1]);
+int main(int argc, char** argv) {
+    if (argc != 2) {
+        std::cerr << "Usage: ./convert <literal>\n"; 
+        return 1;
+    }
+    ScalarConverter::convert(argv[1]);
+	return 0;
+}
 
-     return 0;
- }
-
-//static void printTest(const std::string &literal)
-//{
+//static void printTest(const std::string &literal) {
 //    std::cout << "==== \"" << literal << "\" ====\n";
 //    ScalarConverter::convert(literal);
 //    std::cout << "-----------------------------\n";
 //}
 
-//int main()
-//{
+//int main() {
 //    const std::string tests[] = {
 //        // 1. Empty string
 //         "",
