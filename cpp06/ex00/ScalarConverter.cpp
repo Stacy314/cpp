@@ -77,7 +77,16 @@ void ScalarConverter::convert(std::string const &literal) {
     if (end && *end == 'f' && *(end + 1) == '\0')
         hasF = true;
     if ((end == literal.c_str()) || (end && *end != '\0' && !hasF)){
+        // invalid literal
+        std::cout << "char: impossible\n";
+        std::cout << "int: impossible\n";
+        std::cout << "float: impossible\n";
+        std::cout << "double: impossible\n";
+        return;
+    }
 
+    if (errno == ERANGE){
+        // overflow / underflow in parsing
         std::cout << "char: impossible\n";
         std::cout << "int: impossible\n";
         std::cout << "float: impossible\n";
