@@ -3,6 +3,12 @@
 
 #include <algorithm>
 #include <stdexcept>
+#include <vector>
+#include <list>
+#include <deque>
+#include <iostream>
+#include <string>
+#include <exception>
 
 template <typename T>
 typename T::iterator easyfind(T &container, int value){
@@ -12,6 +18,7 @@ typename T::iterator easyfind(T &container, int value){
     return it;
 }
 
+//const overload
 template <typename T>
 typename T::const_iterator easyfind(T const &container, int value){
     typename T::const_iterator it = std::find(container.begin(), container.end(), value);

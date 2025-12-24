@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <stdexcept>
-#include <cstddef> // size_t
+#include <cstddef>
 
 class Span{
 public:

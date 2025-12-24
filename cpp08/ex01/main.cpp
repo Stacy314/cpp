@@ -23,7 +23,7 @@ int main(){
         Span big(n);
 
         for (unsigned int i = 0; i < n; ++i)
-            big.addNumber(static_cast<int>(i)); // простий випадок
+            big.addNumber(static_cast<int>(i));
 
         std::cout << "Shortest span: " << big.shortestSpan() << std::endl;
         std::cout << "Longest span: " << big.longestSpan() << std::endl;
