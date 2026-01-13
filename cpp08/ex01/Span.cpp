@@ -6,7 +6,7 @@ Span::Span(unsigned int n) : _maxSize(n), _numbers() {}
 
 Span::Span(Span const &other) : _maxSize(other._maxSize), _numbers(other._numbers) {}
 
-Span &Span::operator=(Span const &other){
+Span &Span::operator=(Span const &other) {
     if (this != &other)
     {
         _maxSize = other._maxSize;
@@ -17,22 +17,32 @@ Span &Span::operator=(Span const &other){
 
 Span::~Span() {}
 
-void Span::addNumber(int value){
+void Span::addNumber(int value) {
     if (_numbers.size() >= _maxSize)
         throw std::runtime_error("Span is already full");
     _numbers.push_back(value);
 }
 
+static unsigned int safeDiffInt(int small, int big) {
+    if (small > 0 && big < INT_MIN + small)
+        throw std::runtime_error("Span overflow");
+    if (small < 0 && big > INT_MAX + small)
+        throw std::runtime_error("Span overflow");
+    int diff = big - small;
+    if (diff < 0)
+        diff = -diff;
+    return static_cast<unsigned int>(diff);
+}
+
 unsigned int Span::shortestSpan() const {
     if (_numbers.size() < 2)
         throw std::runtime_error("Not enough numbers to find a span");
-
-    std::vector<int> tmp = _numbers;
+    std::vector<int> tmp(_numbers);
     std::sort(tmp.begin(), tmp.end());
 
-    unsigned int minSpan = static_cast<unsigned int>(-1);
-    for (std::vector<int>::size_type i = 1; i < tmp.size(); ++i) {
-        unsigned int diff = static_cast<unsigned int>(tmp[i] - tmp[i - 1]);
+    unsigned int minSpan = UINT_MAX;
+    for (std::vector<int>::size_type i = 1; i < tmp.size(); ++i){
+        unsigned int diff = safeDiffInt(tmp[i - 1], tmp[i]);
         if (diff < minSpan)
             minSpan = diff;
     }
@@ -42,9 +52,9 @@ unsigned int Span::shortestSpan() const {
 unsigned int Span::longestSpan() const {
     if (_numbers.size() < 2)
         throw std::runtime_error("Not enough numbers to find a span");
-
-    std::vector<int>::const_iterator minIt = std::min_element(_numbers.begin(), _numbers.end());
-    std::vector<int>::const_iterator maxIt = std::max_element(_numbers.begin(), _numbers.end());
-
-    return static_cast<unsigned int>(*maxIt - *minIt);
+    std::vector<int>::const_iterator minIt =
+        std::min_element(_numbers.begin(), _numbers.end());
+    std::vector<int>::const_iterator maxIt =
+        std::max_element(_numbers.begin(), _numbers.end());
+    return safeDiffInt(*minIt, *maxIt);
 }
