@@ -1,30 +1,22 @@
 #ifndef EASYFIND_HPP
 #define EASYFIND_HPP
 
-#include <algorithm>
+#include <iostream>
 #include <stdexcept>
+#include <algorithm>
 #include <vector>
 #include <list>
 #include <deque>
-#include <iostream>
-#include <string>
-#include <exception>
+
+#define GREEN   "\033[32m"
+#define RESET   "\033[0m"
 
 template <typename T>
 typename T::iterator easyfind(T &container, int value){
-    typename T::iterator it = std::find(container.begin(), container.end(), value);
-    if (it == container.end())
-        throw std::runtime_error("Value not found in container");
-    return it;
-}
-
-//const overload
-template <typename T>
-typename T::const_iterator easyfind(T const &container, int value){
-    typename T::const_iterator it = std::find(container.begin(), container.end(), value);
-    if (it == container.end())
-        throw std::runtime_error("Value not found in container");
-    return it;
+	typename T::iterator itr = std::find(container.begin(), container.end(), value);
+	if(itr == container.end())
+		throw std::runtime_error("\033[31mValue is not found in container\033[0m");
+	return itr;
 }
 
 #endif

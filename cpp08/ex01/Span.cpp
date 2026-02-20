@@ -7,8 +7,7 @@ Span::Span(unsigned int n) : _maxSize(n), _numbers() {}
 Span::Span(Span const &other) : _maxSize(other._maxSize), _numbers(other._numbers) {}
 
 Span &Span::operator=(Span const &other) {
-    if (this != &other)
-    {
+    if (this != &other) {
         _maxSize = other._maxSize;
         _numbers = other._numbers;
     }
