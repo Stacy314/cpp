@@ -45,10 +45,10 @@ int main() {
     testContainer(v, 3, 42, "Vector");
     testContainer(lst, 2, -1, "List");
     std::cout << "\n";
-
+    
+    std::deque<int> const cdq(dq);
     std::vector<int> const cv(v);
     std::list<int> const clst(lst);
-    std::deque<int> const cdq(dq);
 
     testConstContainer(cdq, 1, 100, "Deque");
     testConstContainer(cv, 2, 42, "Vector");

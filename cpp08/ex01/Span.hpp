@@ -17,15 +17,16 @@ public:
 
     template <typename InputIterator>
     void addRange(InputIterator first, InputIterator last) {
-        while (first != last) {
+        for (; first != last; ++first)
+        {
             if (_numbers.size() >= _maxSize)
                 throw std::runtime_error("Span is already full");
             _numbers.push_back(*first);
-            ++first;
         }
     }
 
 	void addNumber(int value);
+    void addNumber(long value); // overflow-check before cast
     unsigned int shortestSpan() const;
     unsigned int longestSpan() const;
 
