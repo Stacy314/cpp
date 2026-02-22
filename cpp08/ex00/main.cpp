@@ -38,18 +38,5 @@ int main() {
     testContainer(lst, 2000, "List");
 
     std::cout << "\n";
-<<<<<<< HEAD
-
-=======
-    
-    std::deque<int> const cdq(dq);
-    std::vector<int> const cv(v);
-    std::list<int> const clst(lst);
-
-    testConstContainer(cdq, 1, 100, "Deque");
-    testConstContainer(cv, 2, 42, "Vector");
-    testConstContainer(clst, 3, -1, "List");
-    
->>>>>>> 938b6550891237ca4279743c68d1573a905e86d2
     return 0;
 }

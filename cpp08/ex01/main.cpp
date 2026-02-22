@@ -37,7 +37,7 @@ int main(){
     }
     
     {
-        std::cout << "\n=== Overflow ===\n";
+        std::cout << "\n=== Overflow ===\n"; //check with 1 number
         Span sp(2);
         try {
             sp.addNumber(6);
@@ -49,7 +49,7 @@ int main(){
     }
 
     {
-        std::cout << "\n=== INT_MAX & INT_MIN ===\n";
+        std::cout << "\n=== INT_MAX & INT_MIN ===\n"; //failed with int_min + num (return long)
         Span sp(2);
         sp.addNumber(INT_MIN);
         sp.addNumber(INT_MAX);
