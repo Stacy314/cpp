@@ -20,14 +20,8 @@ void Span::addNumber(int value) {
     _numbers.push_back(value);
 }
 
-static unsigned int safeDiffInt(int small, int big) {
-    if (small > 0 && big < INT_MIN + small)
-        throw std::runtime_error("Span overflow");
-    if (small < 0 && big > INT_MAX + small)
-        throw std::runtime_error("Span overflow");
-    int diff = big - small;
-    if (diff < 0)
-        diff = -diff;
+static unsigned int diffInt(int small, int big) {
+    long diff = static_cast<long>(big) - static_cast<long>(small);
     return static_cast<unsigned int>(diff);
 }
 
@@ -36,10 +30,9 @@ unsigned int Span::shortestSpan() const {
         throw std::runtime_error("Not enough numbers to find a span");
     std::vector<int> tmp(_numbers);
     std::sort(tmp.begin(), tmp.end());
-
     unsigned int minSpan = UINT_MAX;
     for (std::vector<int>::size_type i = 1; i < tmp.size(); ++i){
-        unsigned int diff = safeDiffInt(tmp[i - 1], tmp[i]);
+        unsigned int diff = diffInt(tmp[i - 1], tmp[i]);
         if (diff < minSpan)
             minSpan = diff;
     }
@@ -53,5 +46,13 @@ unsigned int Span::longestSpan() const {
         std::min_element(_numbers.begin(), _numbers.end());
     std::vector<int>::const_iterator maxIt =
         std::max_element(_numbers.begin(), _numbers.end());
-    return safeDiffInt(*minIt, *maxIt);
+    return diffInt(*minIt, *maxIt);
 }
+
+
+
+
+
+
+
+

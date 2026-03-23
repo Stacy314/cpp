@@ -26,7 +26,6 @@ public:
     }
 
 	void addNumber(int value);
-    void addNumber(long value); // overflow-check before cast
     unsigned int shortestSpan() const;
     unsigned int longestSpan() const;
 
