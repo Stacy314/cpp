@@ -87,7 +87,7 @@ void BitcoinExchange::loadDatabase(const std::string &dbFile) {
         if (line.empty())
             continue;
 
-        std::string::size_type comma = line.find(',');
+        std::string::size_type comma = line.find('|');
         if (comma == std::string::npos)
             continue;
 

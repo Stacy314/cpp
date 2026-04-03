@@ -23,7 +23,6 @@ public:
 
 private:
     std::map<std::string, double> _db;
-
     void loadDatabase(const std::string &dbFile);
     static std::string trim(const std::string &s);
     static bool isLeapYear(int year);
