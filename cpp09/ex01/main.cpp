@@ -3,15 +3,15 @@
 
 int main(int argc, char **argv) {
     if (argc != 2) {
-        std::cerr << "Error" << std::endl;
+        std::cerr << "Error" << "\n";
         return 1;
     }
 
     try {
         RPN rpn;
-        std::cout << rpn.evaluate(argv[1]) << std::endl;
+        std::cout << rpn.evaluate(argv[1]) << "\n";
     } catch (const std::exception &) {
-        std::cerr << "Error" << std::endl;
+        std::cerr << "Error" << "\n";
         return 1;
     }
 

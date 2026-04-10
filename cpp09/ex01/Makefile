@@ -1,4 +1,4 @@
-NAME     = mutant.out
+NAME     = RPN
 CXX		 = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP -pedantic
 SRC		 = main.cpp RPN.cpp

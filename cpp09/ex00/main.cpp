@@ -7,10 +7,10 @@ int main(int argc, char **argv) {
         return 1;
     }
     try {
-        BitcoinExchange btc(argv[1]);
+        BitcoinExchange btc("data.csv");
         btc.processInputFile(argv[1]);
     } catch (const std::exception &e) {
-        std::cout << e.what() << "\n";
+        std::cout << e.what() << "\n";;
         return 1;
     }
     return 0;

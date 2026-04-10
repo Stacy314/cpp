@@ -54,14 +54,14 @@ void PmergeMe::printBefore() const {
     std::cout << "Before: ";
     for (size_t i = 0; i < _vectorData.size(); ++i)
         std::cout << _vectorData[i] << " ";
-    std::cout << std::endl;
+    std::cout << "\n";
 }
 
 void PmergeMe::printAfter(const std::vector<int> &sorted) const {
     std::cout << "After: ";
     for (size_t i = 0; i < sorted.size(); ++i)
         std::cout << sorted[i] << " ";
-    std::cout << std::endl;
+    std::cout << "\n";
 }
 
 std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t n) const {
@@ -103,7 +103,7 @@ std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t n) const {
 
     return result;
 }
-
+//template
 size_t PmergeMe::binarySearchVector(const std::vector<int> &arr, int value, size_t end) const {
     size_t left = 0;
     size_t right = end;
@@ -274,9 +274,9 @@ void PmergeMe::run(int argc, char **argv) {
 
     std::cout << "Time to process a range of " << vecCopy.size()
               << " elements with std::vector : "
-              << timeVec << " us" << std::endl;
+              << timeVec << " us" << "\n";
 
     std::cout << "Time to process a range of " << deqCopy.size()
               << " elements with std::deque : "
-              << timeDeq << " us" << std::endl;
+              << timeDeq << " us" << "\n";
 }

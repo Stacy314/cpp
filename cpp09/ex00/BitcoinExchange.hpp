@@ -20,15 +20,15 @@ public:
     ~BitcoinExchange();
 
     void processInputFile(const std::string &inputFile) const;
-
+	
 private:
     std::map<std::string, double> _db;
-    void loadDatabase(const std::string &dbFile);
     static std::string trim(const std::string &s);
     static bool isLeapYear(int year);
     static bool isValidDate(const std::string &date);
     static bool parseValue(const std::string &s, double &value);
     double getRateForDate(const std::string &date) const;
+	void loadDatabase(const std::string &dbFile);
 };
 
 #endif

@@ -1,4 +1,4 @@
-NAME     = mutant.out
+NAME     = PmergeMe
 CXX		 = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP -pedantic
 SRC		 = main.cpp PmergeMe.cpp

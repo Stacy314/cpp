@@ -87,7 +87,7 @@ void BitcoinExchange::loadDatabase(const std::string &dbFile) {
         if (line.empty())
             continue;
 
-        std::string::size_type comma = line.find('|');
+        std::string::size_type comma = line.find(',');
         if (comma == std::string::npos)
             continue;
 
@@ -124,53 +124,59 @@ double BitcoinExchange::getRateForDate(const std::string &date) const {
 void BitcoinExchange::processInputFile(const std::string &inputFile) const {
     std::ifstream file(inputFile.c_str());
     if (!file.is_open()) {
-        std::cout << "Error: could not open file." << std::endl;
+        std::cout << "Error: could not open file." << "\n";
         return;
     }
-
     std::string line;
-    if (!std::getline(file, line))
-        return;
+	if (!std::getline(file, line))
+		throw std::runtime_error("Error: empty file.");
+
+	if (line != "date | value"){
+
+		throw std::runtime_error("Error: bad header.");
+	}
 
     while (std::getline(file, line)) {
         if (line.empty())
             continue;
 
-        std::string::size_type pipe = line.find('|');
-        if (pipe == std::string::npos) {
-            std::cout << "Error: bad input => " << line << std::endl;
+        std::string::size_type separator = line.find('|');
+        if (separator == std::string::npos) {
+            std::cout << "Error: bad input => " << line << "\n";
             continue;
         }
 
-        std::string date = trim(line.substr(0, pipe));
-        std::string valueStr = trim(line.substr(pipe + 1));
+        std::string date = trim(line.substr(0, separator));
+        std::string valueStr = trim(line.substr(separator + 1));
 
         if (!isValidDate(date)) {
-            std::cout << "Error: bad input => " << line << std::endl;
+            std::cout << "Error: bad input => " << line << "\n";
             continue;
         }
 
         double value;
         if (!parseValue(valueStr, value)) {
-            std::cout << "Error: bad input => " << line << std::endl;
+            std::cout << "Error: bad input => " << line << "\n";
             continue;
         }
 
         if (value < 0) {
-            std::cout << "Error: not a positive number." << std::endl;
+            std::cout << "Error: not a positive number." << "\n";
             continue;
         }
 
         if (value > 1000) {
-            std::cout << "Error: too large a number." << std::endl;
+            std::cout << "Error: too large a number." << "\n";
             continue;
         }
 
         try {
             double rate = getRateForDate(date);
-            std::cout << date << " => " << value << " = " << (value * rate) << std::endl;
+            std::cout << date << " => " << value << " = " << (value * rate) << "\n";
         } catch (const std::exception &) {
-            std::cout << "Error: bad input => " << line << std::endl;
+            std::cout << "Error: bad input => " << line << "\n";
         }
+
+
     }
 }

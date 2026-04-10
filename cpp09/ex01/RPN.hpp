@@ -15,7 +15,6 @@ public:
 
 private:
     std::stack<int> _stack;
-
     void applyOperator(char op);
 };
 
