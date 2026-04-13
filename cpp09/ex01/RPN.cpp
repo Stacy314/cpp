@@ -58,7 +58,7 @@ int RPN::evaluate(const std::string &expression) {
                 std::isdigit(static_cast<unsigned char>(expression[i + 1])))
                 throw std::runtime_error("Error");
             _stack.push(c - '0');
-        } else if (c == '+' || c == '-' || c == '*' || c == '/') {
+        } else if ((c == '+' || c == '-' || c == '*' || c == '/') && (std::isspace(static_cast<unsigned char>(expression[i - 1])))) {
             applyOperator(c);
         } else {
             throw std::runtime_error("Error");

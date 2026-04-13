@@ -6,6 +6,7 @@
 #include <ctime>
 #include <set>
 
+//diplacate
 PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe &other)
@@ -35,7 +36,7 @@ void PmergeMe::parseArguments(int argc, char **argv) {
         }
 
         long value = std::strtol(s.c_str(), NULL, 10);
-        if (value <= 0 || value > 2147483647)
+        if (value < 0 || value > 2147483647)
             throw std::runtime_error("Error");
 
         if (seen.find(static_cast<int>(value)) != seen.end())
@@ -103,8 +104,9 @@ std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t n) const {
 
     return result;
 }
-//template
-size_t PmergeMe::binarySearchVector(const std::vector<int> &arr, int value, size_t end) const {
+
+template <typename Container>
+static size_t binarySearchImpl(const Container &arr, int value, size_t end) {
     size_t left = 0;
     size_t right = end;
 
@@ -118,18 +120,12 @@ size_t PmergeMe::binarySearchVector(const std::vector<int> &arr, int value, size
     return left;
 }
 
-size_t PmergeMe::binarySearchDeque(const std::deque<int> &arr, int value, size_t end) const {
-    size_t left = 0;
-    size_t right = end;
+size_t PmergeMe::binarySearchVector(const std::vector<int> &arr, int value, size_t end) const {
+    return binarySearchImpl(arr, value, end);
+}
 
-    while (left < right) {
-        size_t mid = left + (right - left) / 2;
-        if (arr[mid] < value)
-            left = mid + 1;
-        else
-            right = mid;
-    }
-    return left;
+size_t PmergeMe::binarySearchDeque(const std::deque<int> &arr, int value, size_t end) const {
+    return binarySearchImpl(arr, value, end);
 }
 
 std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {
