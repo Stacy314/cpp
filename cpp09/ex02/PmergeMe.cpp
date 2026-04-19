@@ -6,7 +6,6 @@
 #include <ctime>
 #include <set>
 
-//diplacate
 PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe &other)
@@ -65,7 +64,7 @@ void PmergeMe::printAfter(const std::vector<int> &sorted) const {
     std::cout << "\n";
 }
 
-std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t n) const {
+std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t n) const {    //vector for both????
     std::vector<size_t> result;
     if (n == 0)
         return result;
@@ -129,7 +128,7 @@ size_t PmergeMe::binarySearchDeque(const std::deque<int> &arr, int value, size_t
 }
 
 std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {
-    if (data.size() <= 1)
+    if (data.size() == 1)
         return data;
 
     std::vector< std::pair<int, int> > pairs;
@@ -139,14 +138,20 @@ std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {
     for (size_t i = 0; i + 1 < data.size(); i += 2) {
         int a = data[i];
         int b = data[i + 1];
+		
         if (a > b)
+		{
             pairs.push_back(std::make_pair(b, a));
+		}
         else
+		{
             pairs.push_back(std::make_pair(a, b));
+		}
     }
 
     if (data.size() % 2 != 0) {
         hasStraggler = true;
+		//std::cout << "ho\n";
         straggler = data[data.size() - 1];
     }
 
@@ -157,6 +162,14 @@ std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {
         smaller.push_back(pairs[i].first);
         bigger.push_back(pairs[i].second);
     }
+
+	std::cout << "Smaller: ";
+	printAfter(smaller);
+	std::cout << "\n";
+
+	std::cout << "Bigger: ";
+	printAfter(bigger);
+	std::cout << "\n";
 
     bigger = fordJohnsonVector(bigger);
 
