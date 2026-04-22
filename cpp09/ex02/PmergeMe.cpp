@@ -1,10 +1,5 @@
 #include "PmergeMe.hpp"
-#include <iostream>
-#include <sstream>
-#include <stdexcept>
-#include <cstdlib>
-#include <ctime>
-#include <set>
+
 
 PmergeMe::PmergeMe() {}
 
@@ -64,7 +59,7 @@ void PmergeMe::printAfter(const std::vector<int> &sorted) const {
     std::cout << "\n";
 }
 
-std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t n) const {    //vector for both????
+std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t n) const {
     std::vector<size_t> result;
     if (n == 0)
         return result;
@@ -104,32 +99,106 @@ std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t n) const {    //vector
     return result;
 }
 
-template <typename Container>
-static size_t binarySearchImpl(const Container &arr, int value, size_t end) {
-    size_t left = 0;
-    size_t right = end;
-
-    while (left < right) {
-        size_t mid = left + (right - left) / 2;
-        if (arr[mid] < value)
-            left = mid + 1;
-        else
-            right = mid;
-    }
-    return left;
+void printVectorDebug(const std::vector<int>& v, const std::string& label) {
+    std::cout << label;
+    for (size_t i = 0; i < v.size(); ++i)
+        std::cout << v[i] << " ";
+    std::cout << "\n";
 }
 
-size_t PmergeMe::binarySearchVector(const std::vector<int> &arr, int value, size_t end) const {
-    return binarySearchImpl(arr, value, end);
+void printPairsDebug(const std::vector< std::pair<int, int> >& pairs, const std::string& label) {
+    std::cout << label;
+    for (size_t i = 0; i < pairs.size(); ++i)
+        std::cout << "(" << pairs[i].first << "," << pairs[i].second << ") ";
+    std::cout << "\n";
 }
 
-size_t PmergeMe::binarySearchDeque(const std::deque<int> &arr, int value, size_t end) const {
-    return binarySearchImpl(arr, value, end);
+void printOrderDebug(const std::vector<size_t>& order, const std::string& label) {
+    std::cout << label;
+    for (size_t i = 0; i < order.size(); ++i)
+        std::cout << order[i] << " ";
+    std::cout << "\n";
 }
+// std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {
+//     if (data.size() == 1)
+//         return data;
+
+//     std::vector< std::pair<int, int> > pairs;
+//     int straggler = -1;
+//     bool hasStraggler = false;
+
+//     for (size_t i = 0; i + 1 < data.size(); i += 2) {
+//         int a = data[i];
+//         int b = data[i + 1];
+		
+//         if (a > b)
+// 		{
+//             pairs.push_back(std::make_pair(b, a));
+// 		}
+//         else
+// 		{
+//             pairs.push_back(std::make_pair(a, b));
+// 		}
+//     }
+
+//     if (data.size() % 2 != 0) {
+//         hasStraggler = true;
+//         straggler = data[data.size() - 1];
+//     }
+
+//     std::vector<int> bigger;
+//     std::vector<int> smaller;
+
+//     for (size_t i = 0; i < pairs.size(); ++i) {
+//         smaller.push_back(pairs[i].first);
+//         bigger.push_back(pairs[i].second);
+//     }
+
+// 	std::cout << "Smaller: ";
+// 	printAfter(smaller);
+// 	std::cout << "\n";
+
+// 	std::cout << "Bigger: ";
+// 	printAfter(bigger);
+// 	std::cout << "\n";
+
+//     bigger = fordJohnsonVector(bigger);
+
+//     std::vector<int> result = bigger;
+
+//     if (!smaller.empty()) {
+//         size_t pos = binarySearch(result, smaller[0], result.size());
+//         result.insert(result.begin() + pos, smaller[0]);
+
+//         std::vector<size_t> order = buildJacobsthalOrder(smaller.size());
+//         for (size_t i = 0; i < order.size(); ++i) {
+//             size_t idx = order[i];
+//             if (idx == 0 || idx >= smaller.size())
+//                 continue;
+//             size_t insertPos = binarySearch(result, smaller[idx], result.size());
+//             result.insert(result.begin() + insertPos, smaller[idx]);
+//         }
+//     }
+
+//     if (hasStraggler) {
+//         size_t pos = binarySearch(result, straggler, result.size());
+//         result.insert(result.begin() + pos, straggler);
+//     }
+
+//     return result;
+// }
 
 std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {
-    if (data.size() == 1)
+    std::cout << "\n==============================\n";
+    printVectorDebug(data, "fordJohnsonVector() input: ");
+
+    if (data.size() <= 1) {
+        std::cout << "Base case reached, return: ";
+        for (size_t i = 0; i < data.size(); ++i)
+            std::cout << data[i] << " ";
+        std::cout << "\n";
         return data;
+    }
 
     std::vector< std::pair<int, int> > pairs;
     int straggler = -1;
@@ -138,21 +207,21 @@ std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {
     for (size_t i = 0; i + 1 < data.size(); i += 2) {
         int a = data[i];
         int b = data[i + 1];
-		
+
         if (a > b)
-		{
             pairs.push_back(std::make_pair(b, a));
-		}
         else
-		{
             pairs.push_back(std::make_pair(a, b));
-		}
     }
+
+    printPairsDebug(pairs, "Pairs after local sort: ");
 
     if (data.size() % 2 != 0) {
         hasStraggler = true;
-		//std::cout << "ho\n";
         straggler = data[data.size() - 1];
+        std::cout << "Straggler: " << straggler << "\n";
+    } else {
+        std::cout << "No straggler\n";
     }
 
     std::vector<int> bigger;
@@ -163,36 +232,56 @@ std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {
         bigger.push_back(pairs[i].second);
     }
 
-	std::cout << "Smaller: ";
-	printAfter(smaller);
-	std::cout << "\n";
+    printVectorDebug(smaller, "Smaller elements: ");
+    printVectorDebug(bigger, "Bigger elements before recursion: ");
 
-	std::cout << "Bigger: ";
-	printAfter(bigger);
-	std::cout << "\n";
-
+    std::cout << "Recursive call on bigger...\n";
     bigger = fordJohnsonVector(bigger);
+    printVectorDebug(bigger, "Bigger after recursion: ");
 
     std::vector<int> result = bigger;
+    printVectorDebug(result, "Initial result = bigger: ");
 
     if (!smaller.empty()) {
-        size_t pos = binarySearchVector(result, smaller[0], result.size());
+        std::cout << "Insert first smaller[0] = " << smaller[0] << "\n";
+        size_t pos = binarySearch(result, smaller[0], result.size());
+        std::cout << "Position found by binarySearch: " << pos << "\n";
         result.insert(result.begin() + pos, smaller[0]);
+        printVectorDebug(result, "Result after inserting first smaller: ");
 
         std::vector<size_t> order = buildJacobsthalOrder(smaller.size());
+        printOrderDebug(order, "Jacobsthal insertion order: ");
+
         for (size_t i = 0; i < order.size(); ++i) {
             size_t idx = order[i];
-            if (idx == 0 || idx >= smaller.size())
+
+            std::cout << "Try order[" << i << "] = " << idx << "\n";
+
+            if (idx == 0 || idx >= smaller.size()) {
+                std::cout << "Skip idx = " << idx << " (out of allowed range)\n";
                 continue;
-            size_t insertPos = binarySearchVector(result, smaller[idx], result.size());
+            }
+
+            std::cout << "Insert smaller[" << idx << "] = " << smaller[idx] << "\n";
+            size_t insertPos = binarySearch(result, smaller[idx], result.size());
+            std::cout << "Position found by binarySearch: " << insertPos << "\n";
             result.insert(result.begin() + insertPos, smaller[idx]);
+            printVectorDebug(result, "Result after insertion: ");
         }
+    } else {
+        std::cout << "No smaller elements to insert\n";
     }
 
     if (hasStraggler) {
-        size_t pos = binarySearchVector(result, straggler, result.size());
+        std::cout << "Insert straggler = " << straggler << "\n";
+        size_t pos = binarySearch(result, straggler, result.size());
+        std::cout << "Position found by binarySearch: " << pos << "\n";
         result.insert(result.begin() + pos, straggler);
+        printVectorDebug(result, "Result after straggler insertion: ");
     }
+
+    printVectorDebug(result, "Return from fordJohnsonVector(): ");
+    std::cout << "==============================\n";
 
     return result;
 }
@@ -232,7 +321,7 @@ std::deque<int> PmergeMe::fordJohnsonDeque(const std::deque<int> &data) {
     std::deque<int> result = bigger;
 
     if (!smaller.empty()) {
-        size_t pos = binarySearchDeque(result, smaller[0], result.size());
+        size_t pos = binarySearch(result, smaller[0], result.size());
         result.insert(result.begin() + pos, smaller[0]);
 
         std::vector<size_t> order = buildJacobsthalOrder(smaller.size());
@@ -240,25 +329,17 @@ std::deque<int> PmergeMe::fordJohnsonDeque(const std::deque<int> &data) {
             size_t idx = order[i];
             if (idx == 0 || idx >= smaller.size())
                 continue;
-            size_t insertPos = binarySearchDeque(result, smaller[idx], result.size());
+            size_t insertPos = binarySearch(result, smaller[idx], result.size());
             result.insert(result.begin() + insertPos, smaller[idx]);
         }
     }
 
     if (hasStraggler) {
-        size_t pos = binarySearchDeque(result, straggler, result.size());
+        size_t pos = binarySearch(result, straggler, result.size());
         result.insert(result.begin() + pos, straggler);
     }
 
     return result;
-}
-
-void PmergeMe::sortVector(std::vector<int> &data) {
-    data = fordJohnsonVector(data);
-}
-
-void PmergeMe::sortDeque(std::deque<int> &data) {
-    data = fordJohnsonDeque(data);
 }
 
 void PmergeMe::run(int argc, char **argv) {
@@ -269,17 +350,18 @@ void PmergeMe::run(int argc, char **argv) {
     std::deque<int> deqCopy = _dequeData;
 
     clock_t startVec = clock();
-    sortVector(vecCopy);
+    fordJohnsonVector(vecCopy);
     clock_t endVec = clock();
 
     clock_t startDeq = clock();
-    sortDeque(deqCopy);
+    fordJohnsonDeque(deqCopy);
     clock_t endDeq = clock();
 
     printAfter(vecCopy);
 
-    double timeVec = static_cast<double>(endVec - startVec) * 1000000.0 / CLOCKS_PER_SEC;
-    double timeDeq = static_cast<double>(endDeq - startDeq) * 1000000.0 / CLOCKS_PER_SEC;
+    std::cout << std::fixed << std::setprecision(5);
+    double timeVec = static_cast<double>(endVec - startVec);
+    double timeDeq = static_cast<double>(endDeq - startDeq);
 
     std::cout << "Time to process a range of " << vecCopy.size()
               << " elements with std::vector : "
