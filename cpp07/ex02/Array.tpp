@@ -2,7 +2,9 @@
 # define ARRAY_TPP
 
 template <typename T>
-Array<T>::Array() : _data(0), _size(0) {}
+Array<T>::Array() : _data(0), _size(0) {
+	std::cout << a;
+}
 
 template <typename T>
 Array<T>::Array(unsigned int n) : _data(0), _size(n) {

@@ -52,47 +52,6 @@ void PmergeMe::printBefore() const {
     std::cout << "\n";
 }
 
-
-std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t n) const {
-    std::vector<size_t> result;
-    if (n == 0)
-        return result;
-
-    std::vector<size_t> jacob;
-    jacob.push_back(0);
-    jacob.push_back(1);
-
-    while (jacob.back() < n) {
-        size_t sz = jacob.size();
-        jacob.push_back(jacob[sz - 1] + 2 * jacob[sz - 2]);
-    }
-
-    std::vector<bool> used(n, false);
-
-    for (size_t i = 2; i < jacob.size(); ++i) {
-        size_t start = jacob[i];
-        size_t prev = jacob[i - 1];
-
-        if (start > n)
-            start = n;
-
-        while (start > prev) {
-            --start;
-            if (start < n && !used[start]) {
-                result.push_back(start);
-                used[start] = true;
-            }
-        }
-    }
-
-    for (size_t i = 0; i < n; ++i) {
-        if (!used[i])
-            result.push_back(i);
-    }
-
-    return result;
-}
-
 std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {
     if (data.size() == 1)
 		return data;

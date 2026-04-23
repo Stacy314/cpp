@@ -1,4 +1,7 @@
 #include "MutantStack.hpp"
+#include <typeinfo>
+#include <iostream>
+
 
 template <typename It>
 static void printRange(It b, It e, const std::string& label) {
@@ -200,6 +203,9 @@ void test_iter_after_push(){
 int main() {
     std::cout << "=== MutantStack test ===" << "\n";
     MutantStack<int> mstack;
+	MutantStack<int> m;
+
+	std::cout << typeid(m).name() << std::endl;
 
     mstack.push(5);
     mstack.push(17);

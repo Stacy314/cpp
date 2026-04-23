@@ -7,7 +7,7 @@
 int main() {
     
     Bureaucrat exec("Exec", 1);
-    Bureaucrat mid ("Mid", 50);
+    Bureaucrat mid ("Mid", 11150);
    
     ShrubberyCreationForm sh("home");
     RobotomyRequestForm rb("Major Motoko Kusanagi");

@@ -14,7 +14,7 @@ public:
     int evaluate(const std::string &expression);
 
 private:
-    std::stack<int> _stack;
+    std::stack<int, std::list<int> >  _stack;
     void applyOperator(char op);
 };
 
