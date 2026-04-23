@@ -23,28 +23,28 @@ void RPN::applyOperator(char op) {
     int a = _stack.top();
     _stack.pop();
 
-    int result = 0;
+    int mainChain = 0;
 
     switch (op) {
         case '+':
-            result = a + b;
+            mainChain = a + b;
             break;
         case '-':
-            result = a - b;
+            mainChain = a - b;
             break;
         case '*':
-            result = a * b;
+            mainChain = a * b;
             break;
         case '/':
             if (b == 0)
                 throw std::runtime_error("Error");
-            result = a / b;
+            mainChain = a / b;
             break;
         default:
             throw std::runtime_error("Error");
     }
 
-    _stack.push(result);
+    _stack.push(mainChain);
 }
 
 int RPN::evaluate(const std::string &expression) {
