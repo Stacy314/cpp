@@ -17,8 +17,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
 PmergeMe::~PmergeMe() {}
 
 void PmergeMe::parseArguments(int argc, char **argv) {
-    std::set<int> seen;
-
     for (int i = 1; i < argc; ++i) {
         std::string s(argv[i]);
         if (s.empty())
@@ -33,10 +31,11 @@ void PmergeMe::parseArguments(int argc, char **argv) {
         if (value < 0 || value > 2147483647)
             throw std::runtime_error("Error");
 
-        if (seen.find(static_cast<int>(value)) != seen.end())
-            throw std::runtime_error("Error");
+        for (size_t j = 0; j < _vectorData.size(); ++j) {
+            if (_vectorData[j] == static_cast<int>(value))
+                throw std::runtime_error("Error");
+        }
 
-        seen.insert(static_cast<int>(value));
         _vectorData.push_back(static_cast<int>(value));
         _dequeData.push_back(static_cast<int>(value));
     }
@@ -50,6 +49,46 @@ void PmergeMe::printBefore() const {
     for (size_t i = 0; i < _vectorData.size(); ++i)
         std::cout << _vectorData[i] << " ";
     std::cout << "\n";
+}
+
+std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t n) const {
+    std::vector<size_t> result;
+    if (n == 0)
+        return result;
+
+    std::vector<size_t> jacob;
+    jacob.push_back(0);
+    jacob.push_back(1);
+
+    while (jacob.back() < n) {
+        size_t sz = jacob.size();
+        jacob.push_back(jacob[sz - 1] + 2 * jacob[sz - 2]);
+    }
+
+    std::vector<bool> used(n, false);
+
+    for (size_t i = 2; i < jacob.size(); ++i) {
+        size_t start = jacob[i];
+        size_t prev = jacob[i - 1];
+
+        if (start > n)
+            start = n;
+
+        while (start > prev) {
+            --start;
+            if (start < n && !used[start]) {
+                result.push_back(start);
+                used[start] = true;
+            }
+        }
+    }
+
+    for (size_t i = 0; i < n; ++i) {
+        if (!used[i])
+            result.push_back(i);
+    }
+
+    return result;
 }
 
 std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {

@@ -1,8 +1,9 @@
 #ifndef RPN_HPP
 #define RPN_HPP
 
-#include <stack>
-#include <string>
+#include <list>
+#include <stdexcept>
+#include <iostream>
 
 class RPN {
 public:
@@ -14,7 +15,7 @@ public:
     int evaluate(const std::string &expression);
 
 private:
-    std::stack<int, std::list<int> >  _stack;
+	std::list<int> _list;
     void applyOperator(char op);
 };
 

@@ -1,27 +1,25 @@
 #include "RPN.hpp"
-#include <stdexcept>
-#include <cctype>
 
 RPN::RPN() {}
 
-RPN::RPN(const RPN &other) : _stack(other._stack) {}
+RPN::RPN(const RPN &other) : _list(other._list) {}
 
 RPN &RPN::operator=(const RPN &other) {
     if (this != &other)
-        _stack = other._stack;
+        _list = other._list;
     return *this;
 }
 
 RPN::~RPN() {}
 
 void RPN::applyOperator(char op) {
-    if (_stack.size() < 2)
+    if (_list.size() < 2)
         throw std::runtime_error("Error");
 
-    int b = _stack.top();
-    _stack.pop();
-    int a = _stack.top();
-    _stack.pop();
+    int b = _list.back();
+    _list.pop_back();
+    int a = _list.back();
+    _list.pop_back();
 
     int mainChain = 0;
 
@@ -44,7 +42,7 @@ void RPN::applyOperator(char op) {
             throw std::runtime_error("Error");
     }
 
-    _stack.push(mainChain);
+    _list.push_back(mainChain);
 }
 
 int RPN::evaluate(const std::string &expression) {
@@ -57,7 +55,7 @@ int RPN::evaluate(const std::string &expression) {
             if (i + 1 < expression.size() &&
                 std::isdigit(static_cast<unsigned char>(expression[i + 1])))
                 throw std::runtime_error("Error");
-            _stack.push(c - '0');
+            _list.push_back(c - '0');
         } else if ((c == '+' || c == '-' || c == '*' || c == '/') && (std::isspace(static_cast<unsigned char>(expression[i - 1])))) {
             applyOperator(c);
         } else {
@@ -65,8 +63,8 @@ int RPN::evaluate(const std::string &expression) {
         }
     }
 
-    if (_stack.size() != 1)
+    if (_list.size() != 1)
         throw std::runtime_error("Error");
 
-    return _stack.top();
+    return _list.back();
 }

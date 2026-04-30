@@ -3,10 +3,8 @@
 
 #include <vector>
 #include <deque>
-#include <string>
-#include <iomanip>
+#include <iomanip> //std::setprecision
 #include <iostream>
-#include <sstream>
 #include <stdexcept>
 #include <cstdlib>
 #include <ctime>
@@ -30,7 +28,7 @@ private:
     std::vector<int> fordJohnsonVector(const std::vector<int> &data);
     std::deque<int>  fordJohnsonDeque(const std::deque<int> &data);
 
-    std::vector<size_t> buildJacobsthalOrder(size_t n) const;
+	std::vector<size_t> buildJacobsthalOrder(size_t n) const;
 
     void printBefore() const;
 };
