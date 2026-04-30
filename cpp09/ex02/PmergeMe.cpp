@@ -1,6 +1,5 @@
 #include "PmergeMe.hpp"
 
-
 PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe &other)
@@ -135,7 +134,6 @@ std::vector<int> PmergeMe::fordJohnsonVector(const std::vector<int> &data) {
 
     return mainChain;
 }
-
 
 std::deque<int> PmergeMe::fordJohnsonDeque(const std::deque<int> &data) {
     if (data.size() <= 1)
